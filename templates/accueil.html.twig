@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Front-end{% endblock %}</title>
+        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+        <!-- CSS only -->
+        <link differ href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+        <link href="http://fonts.cdnfonts.com/css/calibri-light" rel="stylesheet">
+        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="accueil.css">
+        {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
+        {% block stylesheets %}
+            {{ encore_entry_link_tags('app') }}
+        {% endblock %}
+
+        {% block javascripts %}
+            {{ encore_entry_script_tags('app') }}
+        {% endblock %}
+    </head>
+    <body>
+        {% block body %}{% endblock %}
+
+        <footer class="row row-cols-1 row-cols-sm-2 row-cols-md-3 m-3" id="footer-accueil">
+            <div class="col">
+                <ul class="nav flex-column">
+                    <li class="nav-item"><a href="#" class="nav-link p-0 text-muted">99 Rue de Conflans</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link p-0 text-muted">95220 Herblay-sur-seine</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link p-0 text-muted">Tél : 01.42.03.77.00</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link p-0 text-muted">Email : groupesr3@gmail.com</a></li>
+                </ul>
+            </div>
+            <div class="col d-flex align-items-center justify-content-center">
+                <p class="text-muted">GROUPESR3 &copy; 2022</p>
+            </div>
+            <div class="col">
+
+            </div>
+        </footer>
+        <!-- JavaScript Bundle with Popper -->
+        <script differ src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+    </body>
+</html>

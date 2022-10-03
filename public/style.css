@@ -1,0 +1,10 @@
+*{
+    font-family: 'Calibri Light', sans-serif;
+}
+
+footer{
+    position:absolute;
+    bottom: 0;
+    right: 0;
+    left: 0;
+}
