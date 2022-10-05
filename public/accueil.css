@@ -1,7 +1,9 @@
-/* #footer-accueil{
-    height: 15vh;
-} */
+
 #div1, #div2 {
     border: 1px solid red;
     height: 86vh;
+}
+
+#img-accueil{
+    height: 200px;
 }
