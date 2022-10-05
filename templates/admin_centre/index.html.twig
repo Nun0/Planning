@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Centre index{% endblock %}
+
+{% block body %}
+    <h1>Centre index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Adresse</th>
+                <th>CodePostal</th>
+                <th>Mail</th>
+                <th>Telephone</th>
+                <th>Responsable</th>
+                <th>Horaire</th>
+                <th>HoraireApresMidi</th>
+                <th>Couleur</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for centre in centres %}
+            <tr>
+                <td>{{ centre.id }}</td>
+                <td>{{ centre.nom }}</td>
+                <td>{{ centre.adresse }}</td>
+                <td>{{ centre.codePostal }}</td>
+                <td>{{ centre.mail }}</td>
+                <td>{{ centre.telephone }}</td>
+                <td>{{ centre.responsable }}</td>
+                <td>{{ centre.horaire }}</td>
+                <td>{{ centre.horaireApresMidi }}</td>
+                <td>{{ centre.couleur }}</td>
+                <td>
+                    <a href="{{ path('app_admin_centre_show', {'id': centre.id}) }}">show</a>
+                    <a href="{{ path('app_admin_centre_edit', {'id': centre.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="11">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_admin_centre_new') }}">Create new</a>
+{% endblock %}
