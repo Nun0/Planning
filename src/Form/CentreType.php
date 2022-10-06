@@ -12,15 +12,15 @@ class CentreType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('nom')
-            ->add('adresse')
-            ->add('codePostal')
-            ->add('mail')
-            ->add('telephone')
-            ->add('responsable')
-            ->add('horaire')
-            ->add('horaireApresMidi')
-            ->add('couleur')
+            ->add('nom', TextType::class)
+            ->add('adresse', TextType::class)
+            ->add('codePostal', TextType::class)
+            ->add('mail', MailType::class)
+            ->add('telephone', TextType::class)
+            ->add('responsable', TextType::class)
+            ->add('horaire', TextType::class)
+            ->add('horaireApresMidi', TextType::class)
+            ->add('couleur',ColorType::class)
         ;
     }
 

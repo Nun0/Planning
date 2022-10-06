@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\ColorType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -15,10 +16,14 @@ class UserType extends AbstractType
     {
         $builder
             ->add('email')
-            ->add('roles', CollectionType::class , [
-                'allow_add' => true,
-                'allow_delete'=> true,
-                ])
+            ->add('role', ChoiceType::class, [
+                'label' => 'Rôle',
+                'choices' => [
+                    'Formateur' => 'USER',
+                    'Administrateur' => 'ADMIN',
+                ],
+                'required' => true,
+                'mapped' => false,])
             ->add('password')
             ->add('nom')
             ->add('prenom')
