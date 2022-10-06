@@ -25,10 +25,10 @@ class UserType extends AbstractType
                 ],
                 'required' => true,
                 'mapped' => false,])
-            ->add('password')
-            ->add('nom')
-            ->add('prenom')
-            ->add('telephone')
+            ->add('password',TextType::class, ["label" => "Password :"])
+            ->add('nom',TextType::class, ["label" => "Nom :"])
+            ->add('prenom',TextType::class, ["label" => "Prenom :"])
+            ->add('telephone',TextType::class, ["label" => "Telephone :"])
             ->add('couleur', ColorType::class)
         ;
     }
