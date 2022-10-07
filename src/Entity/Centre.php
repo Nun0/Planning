@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\CentreRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: CentreRepository::class)]
@@ -39,6 +41,14 @@ class Centre
 
     #[ORM\Column(length: 255)]
     private ?string $couleur = null;
+
+    #[ORM\OneToMany(mappedBy: 'centre', targetEntity: Promo::class)]
+    private Collection $promos;
+
+    public function __construct()
+    {
+        $this->promos = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -149,6 +159,36 @@ class Centre
     public function setCouleur(string $couleur): self
     {
         $this->couleur = $couleur;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Promo>
+     */
+    public function getPromos(): Collection
+    {
+        return $this->promos;
+    }
+
+    public function addPromo(Promo $promo): self
+    {
+        if (!$this->promos->contains($promo)) {
+            $this->promos->add($promo);
+            $promo->setCentre($this);
+        }
+
+        return $this;
+    }
+
+    public function removePromo(Promo $promo): self
+    {
+        if ($this->promos->removeElement($promo)) {
+            // set the owning side to null (unless already changed)
+            if ($promo->getCentre() === $this) {
+                $promo->setCentre(null);
+            }
+        }
 
         return $this;
     }
