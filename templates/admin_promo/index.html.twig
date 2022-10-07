@@ -12,7 +12,7 @@
             <thead>
                 <tr>
                     <th>Nom</th>
-                    <th style="text-align:end">actions</th>
+                    <th style="text-align:end">Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -20,13 +20,12 @@
                 <tr>
                     <td>{{ promo.nom }}</td>
                     <td>
-                        <a href="{{ path('app_admin_promo_show', {'id': promo.id}) }}">show</a>
-                        <a href="{{ path('app_admin_promo_edit', {'id': promo.id}) }}">edit</a>
+                        <a href="{{ path('app_admin_promo_edit', {'id': promo.id}) }}">Modifier</a>
                     </td>
                 </tr>
             {% else %}
                 <tr>
-                    <td colspan="2">no records found</td>
+                    <td colspan="2">pas de données...</td>
                 </tr>
             {% endfor %}
             </tbody>

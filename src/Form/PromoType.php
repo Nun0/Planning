@@ -13,8 +13,8 @@ class PromoType extends AbstractType
     {
         $builder
             ->add('nom')
-            ->add('centre')
-            ->add('cours')
+            // ->add('centre')
+            // ->add('cours')
         ;
     }
 
