@@ -1,11 +1,15 @@
-{% extends 'base.html.twig' %}
+{% extends 'base_back.html.twig' %}
 
 {% block title %}New Promo{% endblock %}
 
 {% block body %}
-    <h1>Create new Promo</h1>
-
+<div style="background-color: #D1D1D1; min-height:100vh">
+    <div class="container" style="max-width:50vw">
+    <div class="d-flex justify-content-center pt-4">
+        <h1>Nouvelle Promo</h1>
+    </div>
+    <div class="d-flex justify-content-end pb-3">
+        <button class="btn btn-primary"><a href="{{ path('app_admin_promo_index') }}" class="nav-link">Retour a la liste</a></button>
+    </div>
     {{ include('admin_promo/_form.html.twig') }}
-
-    <a href="{{ path('app_admin_promo_index') }}">back to list</a>
 {% endblock %}

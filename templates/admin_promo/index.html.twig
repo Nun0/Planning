@@ -1,35 +1,38 @@
-{% extends 'base.html.twig' %}
+{% extends 'base_back.html.twig' %}
 
 {% block title %}Promo index{% endblock %}
 
 {% block body %}
-    <h1>Promo index</h1>
+<div style="background-color: #D1D1D1; min-height:100vh">
+    <div class="container" style="max-width:50vw">
+        <h1 style="text-align:center" class="pt-4">Promos</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Nom</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for promo in promos %}
-            <tr>
-                <td>{{ promo.id }}</td>
-                <td>{{ promo.nom }}</td>
-                <td>
-                    <a href="{{ path('app_admin_promo_show', {'id': promo.id}) }}">show</a>
-                    <a href="{{ path('app_admin_promo_edit', {'id': promo.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="3">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+        <button class="btn btn-success"><a href="{{ path('app_admin_promo_new') }}" class="nav-link">Nouvelle Promo</a></button>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Nom</th>
+                    <th style="text-align:end">actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for promo in promos %}
+                <tr>
+                    <td>{{ promo.nom }}</td>
+                    <td>
+                        <a href="{{ path('app_admin_promo_show', {'id': promo.id}) }}">show</a>
+                        <a href="{{ path('app_admin_promo_edit', {'id': promo.id}) }}">edit</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="2">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
 
-    <a href="{{ path('app_admin_promo_new') }}">Create new</a>
+    </div>
+</div>
+    
 {% endblock %}
