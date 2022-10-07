@@ -12,7 +12,6 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th>Id</th>
                     <th>Nom</th>
                     <th>Adresse</th>
                     <th>CodePostal</th>
@@ -28,7 +27,6 @@
             <tbody>
             {% for centre in centres %}
                 <tr>
-                    <td>{{ centre.id }}</td>
                     <td>{{ centre.nom }}</td>
                     <td>{{ centre.adresse }}</td>
                     <td>{{ centre.codePostal }}</td>
@@ -45,7 +43,7 @@
                 </tr>
             {% else %}
                 <tr>
-                    <td colspan="11">no records found</td>
+                    <td colspan="10">no records found</td>
                 </tr>
             {% endfor %}
             </tbody>

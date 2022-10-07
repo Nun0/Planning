@@ -4,6 +4,9 @@ namespace App\Form;
 
 use App\Entity\Centre;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ColorType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -15,7 +18,7 @@ class CentreType extends AbstractType
             ->add('nom', TextType::class)
             ->add('adresse', TextType::class)
             ->add('codePostal', TextType::class)
-            ->add('mail', MailType::class)
+            ->add('mail', EmailType::class)
             ->add('telephone', TextType::class)
             ->add('responsable', TextType::class)
             ->add('horaire', TextType::class)
