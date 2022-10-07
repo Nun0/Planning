@@ -1,9 +1,13 @@
-{% extends 'base.html.twig' %}
+{% extends 'base_back.html.twig' %}
 
-{% block title %}Cours index{% endblock %}
+{% block title %}Cours{% endblock %}
 
 {% block body %}
-    <h1>Cours index</h1>
+<div style="background-color: #D1D1D1; min-height:100vh">
+    <div class="container">
+    <h1 style="text-align:center" class="pt-4">Cours</h1>
+
+    <button class="btn btn-success"><a href="{{ path('app_admin_cours_new') }}"class="nav-link">Nouveau</a></button>
 
     <table class="table">
         <thead>
@@ -19,17 +23,17 @@
                 <td>{{ cour.id }}</td>
                 <td>{{ cour.module }}</td>
                 <td>
-                    <a href="{{ path('app_admin_cours_show', {'id': cour.id}) }}">show</a>
-                    <a href="{{ path('app_admin_cours_edit', {'id': cour.id}) }}">edit</a>
+                    <a href="{{ path('app_admin_cours_show', {'id': cour.id}) }}">Afficher</a>
+                    <a href="{{ path('app_admin_cours_edit', {'id': cour.id}) }}">Modifier</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="3">no records found</td>
+                <td colspan="3">Aucun Cours</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('app_admin_cours_new') }}">Create new</a>
+    
 {% endblock %}
