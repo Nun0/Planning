@@ -35,15 +35,14 @@
                     <td>{{ centre.responsable }}</td>
                     <td>{{ centre.horaire }}</td>
                     <td>{{ centre.horaireApresMidi }}</td>
-                    <td>{{ centre.couleur }}</td>
+                    <td style="background-color:{{ centre.couleur }}; border-radius:5px"></td>
                     <td>
-                        <a href="{{ path('app_admin_centre_show', {'id': centre.id}) }}">show</a>
-                        <a href="{{ path('app_admin_centre_edit', {'id': centre.id}) }}">edit</a>
+                        <a href="{{ path('app_admin_centre_edit', {'id': centre.id}) }}">Modifier</a>
                     </td>
                 </tr>
             {% else %}
                 <tr>
-                    <td colspan="10">no records found</td>
+                    <td colspan="10">pas de données...</td>
                 </tr>
             {% endfor %}
             </tbody>
