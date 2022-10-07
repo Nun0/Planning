@@ -7,8 +7,8 @@
     <div class="container">
     <h1 style="text-align:center" class="pt-4">S T A F F</h1>
 
-    <button class="btn btn-success"><a href="{{ path('app_admin_user_new') }}" class= "nav-link" class="btn btn-dark">Nouveau</a>
-</button>
+    <button class="btn btn-success"><a href="{{ path('app_admin_user_new') }}" class= "nav-link" class="btn btn-dark">Nouveau</a></button>
+
     <table class="table">
         <thead>
             <tr>
@@ -21,7 +21,6 @@
                 <th>Password</th>
                 <th>Actions</th>
             </tr>
-            
         </thead>
         <tbody>
         {% for user in users %}
@@ -39,7 +38,7 @@
             </tr>
         {% else %}
             <tr>
-                <td colspan="9">Aucun Utilisateur</td>
+                <td colspan="8">Aucun Utilisateur</td>
             </tr>
         {% endfor %}
         </tbody>
