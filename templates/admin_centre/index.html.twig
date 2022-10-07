@@ -14,14 +14,14 @@
                 <tr>
                     <th>Nom</th>
                     <th>Adresse</th>
-                    <th>CodePostal</th>
+                    <th>Code-Postal</th>
                     <th>Mail</th>
                     <th>Telephone</th>
                     <th>Responsable</th>
-                    <th>Horaire</th>
-                    <th>HoraireApresMidi</th>
+                    <th>Horaires - Matin</th>
+                    <th>Horaires - Apres-Midi</th>
                     <th>Couleur</th>
-                    <th>actions</th>
+                    <th style="text-align:center">Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -35,9 +35,9 @@
                     <td>{{ centre.responsable }}</td>
                     <td>{{ centre.horaire }}</td>
                     <td>{{ centre.horaireApresMidi }}</td>
-                    <td style="background-color:{{ centre.couleur }}; border-radius:5px"></td>
+                    <td><div style="background-color:{{ centre.couleur }}; border-radius:5px;padding:3px;height:38px"></div></td>
                     <td>
-                        <a href="{{ path('app_admin_centre_edit', {'id': centre.id}) }}">Modifier</a>
+                        <a href="{{ path('app_admin_centre_edit', {'id': centre.id}) }}" class="btn btn-success">Modifier</a>
                     </td>
                 </tr>
             {% else %}

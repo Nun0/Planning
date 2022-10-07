@@ -27,7 +27,7 @@ class UserFixtures extends Fixture implements FixtureGroupInterface
         $user->setTelephone("010101");
         $user->setEmail("lulu@gmail.com");
         $user->setCouleur("#ff6622");
-        // $user->setRoles(["USER"]);
+        $user->setRoles(["ROLE_USER"]);
         $user->setPassword($this->encoder->hashPassword($user, 'password'));
         $manager->persist($user);
         
@@ -38,7 +38,8 @@ class UserFixtures extends Fixture implements FixtureGroupInterface
         $user->setTelephone("010101");
         $user->setEmail("toto@gmail.com");
         $user->setCouleur("#ffffff");
-        // $user->setRoles(["USER"]);
+        $user->setRoles(["ROLE_USER"]);
+
         $user->setPassword($this->encoder->hashPassword($user, 'password'));
         $manager->persist($user);
 
@@ -48,7 +49,8 @@ class UserFixtures extends Fixture implements FixtureGroupInterface
         $user->setTelephone("010101");
         $user->setEmail("Tutu@gmail.com");
         $user->setCouleur("#ffdd11");
-        // $user->setRoles(["USER"]);
+        $user->setRoles(["ROLE_USER"]);
+
         $user->setPassword($this->encoder->hashPassword($user, 'password'));
         $manager->persist($user);
 
@@ -58,7 +60,8 @@ class UserFixtures extends Fixture implements FixtureGroupInterface
         $user->setTelephone("010101");
         $user->setEmail("Tata@gmail.com");
         $user->setCouleur("#ffaa22");
-        // $user->setRoles(["USER"]);
+        $user->setRoles(["ROLE_USER", "ROLE_ADMIN"]);
+
         $user->setPassword($this->encoder->hashPassword($user, 'password'));
         $manager->persist($user);
 
