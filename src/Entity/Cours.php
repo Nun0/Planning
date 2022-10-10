@@ -26,6 +26,11 @@ class Cours
         $this->promo = new ArrayCollection();
     }
 
+    public function __toString()
+    {
+        return $this->module;
+    }
+
     public function getId(): ?int
     {
         return $this->id;

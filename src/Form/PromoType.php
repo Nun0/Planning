@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Centre;
+use App\Entity\Cours;
 use App\Entity\Promo;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
@@ -26,7 +27,17 @@ class PromoType extends AbstractType
                     'data-placeholder' => 'Centre(s) :',
                 ],
             ])
-            // ->add('cours')
+            ->add('cours', EntityType::class, [
+                'class' => Cours::class,
+                'required' => false,
+                'label' => 'Cours :',
+                'multiple' => true,
+                'by_reference' => true,
+                'attr' => [
+                    'class' => 'select2',
+                    'data-placeholder' => 'Cours:',
+                ],
+            ])
         ;
     }
 

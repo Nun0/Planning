@@ -7,7 +7,7 @@
     <div class="container" style="max-width:50vw">
         <h1 style="text-align:center" class="pt-4">Promos</h1>
 
-        <button class="btn btn-success"><a href="{{ path('app_admin_promo_new') }}" class="nav-link">Nouvelle Promo</a></button>
+        <a href="{{ path('app_admin_promo_new') }}" class="btn btn-success">Nouvelle Promo</a>
         <table class="table">
             <thead>
                 <tr>
@@ -22,7 +22,7 @@
                     <td>{{ promo.nom }}</td>
                     <td>{{ promo.centre }}</td>
                     <td style="text-align:end">
-                        <a href="{{ path('app_admin_promo_edit', {'id': promo.id}) }}" class="btn btn-primary">Modifier</a>
+                        <a href="{{ path('app_admin_promo_edit', {'id': promo.id}) }}" class="btn btn-success">Modifier</a>
                     </td>
                 </tr>
             {% else %}
