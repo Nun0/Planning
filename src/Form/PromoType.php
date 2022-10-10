@@ -2,7 +2,9 @@
 
 namespace App\Form;
 
+use App\Entity\Centre;
 use App\Entity\Promo;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -13,7 +15,17 @@ class PromoType extends AbstractType
     {
         $builder
             ->add('nom')
-            // ->add('centre')
+            ->add('centre', EntityType::class, [
+                'class' => Centre::class,
+                'required' => false,
+                'label' => 'Centre(s) :',
+                'multiple' => false,
+                'by_reference' => true,
+                'attr' => [
+                    'class' => 'select2',
+                    'data-placeholder' => 'Centre(s) :',
+                ],
+            ])
             // ->add('cours')
         ;
     }

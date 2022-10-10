@@ -12,6 +12,7 @@
             <thead>
                 <tr>
                     <th>Nom</th>
+                    <th>Centre</th>
                     <th style="text-align:end">Actions</th>
                 </tr>
             </thead>
@@ -19,13 +20,14 @@
             {% for promo in promos %}
                 <tr>
                     <td>{{ promo.nom }}</td>
-                    <td>
-                        <a href="{{ path('app_admin_promo_edit', {'id': promo.id}) }}">Modifier</a>
+                    <td>{{ promo.centre }}</td>
+                    <td style="text-align:end">
+                        <a href="{{ path('app_admin_promo_edit', {'id': promo.id}) }}" class="btn btn-primary">Modifier</a>
                     </td>
                 </tr>
             {% else %}
                 <tr>
-                    <td colspan="2">pas de données...</td>
+                    <td colspan="3">pas de données...</td>
                 </tr>
             {% endfor %}
             </tbody>
