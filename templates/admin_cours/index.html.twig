@@ -7,26 +7,27 @@
     <div class="container">
     <h1 style="text-align:center" class="pt-4">Cours</h1>
 
-    <button class="btn btn-success"><a href="{{ path('app_admin_cours_new') }}"class="nav-link">Nouveau</a></button>
+    <a href="{{ path('app_admin_cours_new') }}" class="btn btn-success">Nouveau</a>
 
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
                 <th>Module</th>
-                <th>Promo</th>
-
-                <th>Actions</th>
+                <th>Promo(s)</th>
+                <th style="text-align:end" class="pe-4">Actions</th>
             </tr>
         </thead>
         <tbody>
         {% for cour in cours %}
             <tr>
-                <td>{{ cour.id }}</td>
                 <td>{{ cour.module }}</td>
                 <td>
-                    <a href="{{ path('app_admin_cours_show', {'id': cour.id}) }}">Afficher</a>
-                    <a href="{{ path('app_admin_cours_edit', {'id': cour.id}) }}">Modifier</a>
+                {% for promo in cour.promo %}
+                    {{promo}},
+                {% endfor %}
+                </td>
+                <td style="text-align:end">
+                    <a href="{{ path('app_admin_cours_edit', {'id': cour.id}) }}" class="btn btn-success">Modifier</a>
                 </td>
             </tr>
         {% else %}

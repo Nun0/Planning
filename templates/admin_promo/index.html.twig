@@ -4,7 +4,7 @@
 
 {% block body %}
 <div style="background-color: #D1D1D1; min-height:100vh">
-    <div class="container" style="max-width:50vw">
+    <div class="container" style="max-width:80vw">
         <h1 style="text-align:center" class="pt-4">Promos</h1>
 
         <a href="{{ path('app_admin_promo_new') }}" class="btn btn-success">Nouvelle Promo</a>
@@ -13,6 +13,7 @@
                 <tr>
                     <th>Nom</th>
                     <th>Centre</th>
+                    <th>Cours</th>
                     <th style="text-align:end">Actions</th>
                 </tr>
             </thead>
@@ -21,6 +22,11 @@
                 <tr>
                     <td>{{ promo.nom }}</td>
                     <td>{{ promo.centre }}</td>
+                    <td>
+                    {% for cour in promo.cours %}
+                        {{cour}},
+                    {% endfor %}
+                    </td>
                     <td style="text-align:end">
                         <a href="{{ path('app_admin_promo_edit', {'id': promo.id}) }}" class="btn btn-success">Modifier</a>
                     </td>
