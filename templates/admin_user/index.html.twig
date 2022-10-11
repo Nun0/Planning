@@ -5,53 +5,53 @@
 {% block body %}
 <div style="background-color: #D1D1D1; min-height:100vh">
     <div class="container">
-    <h1 style="text-align:center" class="pt-4">S T A F F</h1>
+        <h1 style="text-align:center" class="pt-4">S T A F F</h1>
 
-    <button class="btn btn-success"><a href="{{ path('app_admin_user_new') }}" class= "nav-link" class="btn btn-dark">Nouveau</a></button>
+        <button class="btn btn-success"><a href="{{ path('app_admin_user_new') }}" class= "nav-link" class="btn btn-dark">Nouveau</a></button>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Nom</th>
-                <th>Prenom</th>
-                <th>Telephone</th>
-                <th>Email</th>
-                <th>Couleur</th>
-                <th>Roles</th>
-                <th>Password</th>
-                <th style="text-align:center">Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for user in users %}
-            <tr>
-                <td>{{ user.nom }}</td>
-                <td>{{ user.prenom }}</td>
-                <td>{{ user.telephone }}</td>
-                <td>{{ user.email }}</td>
-                <td><div style="background-color:{{ user.couleur }}; border-radius:5px;padding:3px;height:38px"></div></td>
-                <td>
-                {% if user.roles %}
-                    {% if "ROLE_ADMIN" in user.roles %}
-                        Administrateur
-                    {% else %}
-                        Formateur
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Nom</th>
+                    <th>Prenom</th>
+                    <th>Telephone</th>
+                    <th>Email</th>
+                    <th>Couleur</th>
+                    <th>Roles</th>
+                    <th>Password</th>
+                    <th style="text-align:center">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for user in users %}
+                <tr>
+                    <td>{{ user.nom }}</td>
+                    <td>{{ user.prenom }}</td>
+                    <td>{{ user.telephone }}</td>
+                    <td>{{ user.email }}</td>
+                    <td><div style="background-color:{{ user.couleur }}; border-radius:5px;padding:3px;height:38px"></div></td>
+                    <td>
+                    {% if user.roles %}
+                        {% if "ROLE_ADMIN" in user.roles %}
+                            Administrateur
+                        {% else %}
+                            Formateur
+                        {% endif %}
                     {% endif %}
-                {% endif %}
-                </td>
-                <td>{{ user.password }}</td>
-                <td class="text-end">
-                    <a href="{{ path('app_admin_user_edit', {'id': user.id}) }}" class="btn btn-success">Modifier</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="8">Aucun Utilisateur</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+                    </td>
+                    <td>{{ user.password }}</td>
+                    <td class="text-end">
+                        <a href="{{ path('app_admin_user_edit', {'id': user.id}) }}" class="btn btn-success">Modifier</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="8">Aucun Utilisateur</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
     </div>
-</div
-    
+</div>
+
 {% endblock %}

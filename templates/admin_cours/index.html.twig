@@ -4,39 +4,40 @@
 
 {% block body %}
 <div style="background-color: #D1D1D1; min-height:100vh">
-    <div class="container">
-    <h1 style="text-align:center" class="pt-4">Cours</h1>
+    <div class="container overflow-auto">
+        <h1 style="text-align:center" class="pt-4">Cours</h1>
 
-    <a href="{{ path('app_admin_cours_new') }}" class="btn btn-success">Nouveau</a>
+        <a href="{{ path('app_admin_cours_new') }}" class="btn btn-success">Nouveau</a>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Module</th>
-                <th>Promo(s)</th>
-                <th style="text-align:end" class="pe-4">Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for cour in cours %}
-            <tr>
-                <td>{{ cour.module }}</td>
-                <td>
-                {% for promo in cour.promo %}
-                    {{promo}},
-                {% endfor %}
-                </td>
-                <td style="text-align:end">
-                    <a href="{{ path('app_admin_cours_edit', {'id': cour.id}) }}" class="btn btn-success">Modifier</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="3">Aucun Cours</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Module</th>
+                    <th>Promo(s)</th>
+                    <th style="text-align:end" class="pe-4">Actions</th>
+                </tr>
+            </thead>
+            <tbody >
+            {% for cour in cours %}
+                <tr>
+                    <td>{{ cour.module }}</td>
+                    <td>
+                    {% for promo in cour.promo %}
+                        {{promo}},
+                    {% endfor %}
+                    </td>
+                    <td style="text-align:end">
+                        <a href="{{ path('app_admin_cours_edit', {'id': cour.id}) }}" class="btn btn-success">Modifier</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="3">Aucun Cours</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
     
 {% endblock %}
