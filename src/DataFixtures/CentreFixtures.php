@@ -35,7 +35,7 @@ class CentreFixtures extends Fixture
         $centre->setCodePostal('94110 ARCEUIL');
         $centre->setMail('paslevrai@mail.com');
         $centre->setTelephone('01 45 36 15 20');
-        $centre->setResponsable('Accueil');
+        $centre->setResponsable('Alain Bastardie');
         $centre->setHoraire('9H30 – 13H00');
         $centre->setHoraireApresMidi('14H00 – 17H30');
         $centre->setCouleur('#ffdd11');
