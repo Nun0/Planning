@@ -22,7 +22,7 @@
         <nav class="navbar navbar-light">
             <div class="container-fluid mx-4">
                 <a class="navbar-brand"><img src={{asset('images/logo.png')}} alt="logo" style="width:100px"></a>
-                <div class="d-flex flex-row align-items-center">
+                <div class="d-flex flex-row align-items-center" id="nav">
                     <div><a style="font-size:24px" class="nav-item nav-link text-danger" href="#">Planning</a></div>
                     <div><a style="font-size:24px" class="nav-item nav-link ms-5" href="{{path('app_admin_user_index')}}">Formateurs</a></div>
                     <div><a style="font-size:24px" class="nav-item nav-link ms-5" href="{{path('app_admin_centre_index')}}">Centre de Formation</a></div>
@@ -30,6 +30,7 @@
                     <div><a style="font-size:24px" class="nav-item nav-link ms-5" href="{{path('app_admin_cours_index')}}">Cours</a></div>
                     <div><button class="btn btn-danger ms-5">Déconexion</button></div>
                 </div>
+                
             </div>
         </nav>
 
