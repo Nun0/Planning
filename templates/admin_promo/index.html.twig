@@ -23,8 +23,8 @@
                     <td>{{ promo.nom }}</td>
                     <td>{{ promo.centre }}</td>
                     <td>
-                    {% for cour in promo.cours %}
-                        {{cour}},
+                    {% for key,cour in promo.cours %}
+                        {{cour}}{% if promo.cours | length - 1 != key %}, {% endif %}
                     {% endfor %}
                     </td>
                     <td style="text-align:end">
