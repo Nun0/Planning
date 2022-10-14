@@ -53,10 +53,10 @@ class UserFixtures extends Fixture implements FixtureGroupInterface
         $manager->persist($user);
 
         $user = new User();
-        $user->setNom("Tata");
+        $user->setNom("Admin");
         $user->setPrenom("titi");
         $user->setTelephone("010101");
-        $user->setEmail("Tata@gmail.com");
+        $user->setEmail("admin@gmail.com");
         $user->setCouleur("#ffaa22");
         $user->setRoles(["ROLE_USER", "ROLE_ADMIN"]);
         $user->setPassword('password');
