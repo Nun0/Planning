@@ -1,8 +1,10 @@
-{% extends 'base.html.twig' %}
+{% extends 'base_back.html.twig' %}
 
 {% block title %}Booking index{% endblock %}
 
 {% block body %}
+<div style="background-color: #D1D1D1; min-height:100vh">
+    <div class="container">
     <h1>Booking index</h1>
 
     <table class="table">
@@ -36,4 +38,6 @@
     </table>
 
     <a href="{{ path('app_booking_new') }}">Create new</a>
+    </div>
+</div>
 {% endblock %}
