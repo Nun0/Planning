@@ -12,12 +12,18 @@
         <div class="col-md-5 p-5 m-0" id="div2" style="background-color:#333333">
             <form method="post" class="align-items-center">
                 {% if error %}
-                    <div class="alert alert-danger mt-4">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                    <div class="alert alert-danger mt-2">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
                 {% endif %}
 
                 {% if app.user %}
-                    <div class="mb-3">
-                        You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
+                    <div class="mb-4 alert alert-success">
+                        Vous êtes connecté avec le mail:  {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">déconnexion</a>. 
+                        {% if 'ROLE_ADMIN' in app.user.roles %}
+                            <a href="{{ path('app_booking_calendar')}}">Allez sur le site</a>
+                        {% else %}
+                            <a href="#">Allez sur le site</a>
+                        {% endif %}
+                    
                     </div>
                 {% endif %}
                 <div class="d-flex justify-content-center">
