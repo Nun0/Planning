@@ -3,6 +3,9 @@
 namespace App\Form;
 
 use App\Entity\Centre;
+use App\Entity\Promo;
+use Doctrine\ORM\Mapping\Entity;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ColorType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
@@ -23,6 +26,17 @@ class CentreType extends AbstractType
             ->add('responsable', TextType::class)
             ->add('horaire', TextType::class)
             ->add('horaireApresMidi', TextType::class)
+            ->add('promos', EntityType::class, [
+                'class' => Promo::class,
+                'required' => false,
+                'label' =>  'Promo(s) :',
+                'multiple' => true,
+                'by_reference' => false,
+                'attr' => [
+                    'class' => 'select2',
+                    'data-placeholder' => 'Promo(s) :',
+                ],
+            ])
             ->add('couleur',ColorType::class)
         ;
     }

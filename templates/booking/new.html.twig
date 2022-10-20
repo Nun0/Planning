@@ -15,3 +15,31 @@
     </div>
 </div>
 {% endblock %}
+{% block javascripts %}
+<script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const centre = document.getElementById('booking_centre');
+            centre.addEventListener('change', function(e) {
+                const form = centre.closest('form');
+                fetch(form.action, {
+                    method: form.method,
+                    body: new FormData(form)
+                })
+                .then(response => response.text())
+                .then(html => {
+                    const parser = new DOMParser();
+                    const doc = parser.parseFromString(html, 'text/html');
+                    console.log(doc)
+                    const newPromoField = doc.getElementById('booking_promo');
+                    newPromoField.addEventListener('change', function(e) {
+                        e.target.classList.remove('is-invalid');
+                    });
+                    document.getElementById('booking_promo').replaceWith(newPromoField);
+                })
+                .catch(function (err) {
+                    console.warn('Something went wrong.', err);
+                });
+            });
+        });
+    </script>
+{% endblock %}

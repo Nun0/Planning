@@ -25,6 +25,17 @@ class Booking
     #[ORM\Column(length: 255)]
     private ?string $color = null;
 
+    #[ORM\ManyToOne(inversedBy: 'bookings')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?User $formateur = null;
+
+    #[ORM\ManyToOne(inversedBy: 'bookings')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Centre $centre = null;
+
+    #[ORM\ManyToOne(inversedBy: 'bookings')]
+    private ?Promo $promo = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -77,4 +88,41 @@ class Booking
 
         return $this;
     }
+
+    public function getFormateur(): ?User
+    {
+        return $this->formateur;
+    }
+
+    public function setFormateur(?User $formateur): self
+    {
+        $this->formateur = $formateur;
+
+        return $this;
+    }
+
+    public function getCentre(): ?Centre
+    {
+        return $this->centre;
+    }
+
+    public function setCentre(?Centre $centre): self
+    {
+        $this->centre = $centre;
+
+        return $this;
+    }
+
+    public function getPromo(): ?Promo
+    {
+        return $this->promo;
+    }
+
+    public function setPromo(?Promo $promo): self
+    {
+        $this->promo = $promo;
+
+        return $this;
+    }
+
 }

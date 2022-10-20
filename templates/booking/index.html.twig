@@ -5,24 +5,22 @@
 {% block body %}
 <div style="background-color: #D1D1D1; min-height:100vh">
     <div class="container">
-    <h1>Booking index</h1>
+    <h1>Liste de missions</h1>
 
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>BeginAt</th>
-                <th>EndAt</th>
-                <th>Title</th>
-                <th>actions</th>
+                <th>Date début</th>
+                <th>Date fin</th>
+                <th>Titre</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
         {% for booking in bookings %}
             <tr>
-                <td>{{ booking.id }}</td>
-                <td>{{ booking.beginAt ? booking.beginAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ booking.endAt ? booking.endAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ booking.beginAt ? booking.beginAt|date('d-m-Y') : '' }}</td>
+                <td>{{ booking.endAt ? booking.endAt|date('d-m-Y') : '' }}</td>
                 <td>{{ booking.title }}</td>
                 <td>
                     <a href="{{ path('app_booking_show', {'id': booking.id}) }}">show</a>

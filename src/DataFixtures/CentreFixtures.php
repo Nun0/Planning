@@ -4,15 +4,11 @@ namespace App\DataFixtures;
 
 use App\Entity\Centre;
 use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 
-class CentreFixtures extends Fixture
+class CentreFixtures extends Fixture implements DependentFixtureInterface
 {
-    public const NEXT = 'nextformation';
-    public const ASTON = 'aston';
-    public const GRETAMASSY = 'greta';
-    public const ILCI = 'ilci';
-    public const CESI = 'cesi';
 
     public function load(ObjectManager $manager): void
     {
@@ -26,8 +22,8 @@ class CentreFixtures extends Fixture
         $centre->setHoraire('9H00 – 13H00');
         $centre->setHoraireApresMidi('14H00 – 17H00');
         $centre->setCouleur('#ffffff');
+        $centre->addPromo($this->getReference(PromoFixtures::DWWM));
         $manager->persist($centre);
-        $this->addReference(self::NEXT, $centre);
 
         $centre = new Centre();
         $centre->setNom('Aston');
@@ -39,8 +35,8 @@ class CentreFixtures extends Fixture
         $centre->setHoraire('9H30 – 13H00');
         $centre->setHoraireApresMidi('14H00 – 17H30');
         $centre->setCouleur('#ffdd11');
+        $centre->addPromo($this->getReference(PromoFixtures::DTTE));
         $manager->persist($centre);
-        $this->addReference(self::ASTON, $centre);
 
         $centre = new Centre();
         $centre->setNom('Greta Massy');
@@ -53,7 +49,6 @@ class CentreFixtures extends Fixture
         $centre->setHoraireApresMidi('13H00 – 17H00');
         $centre->setCouleur('#ffaa22');
         $manager->persist($centre);
-        $this->addReference(self::GRETAMASSY, $centre);
 
         $centre = new Centre();
         $centre->setNom('ILCI');
@@ -66,7 +61,6 @@ class CentreFixtures extends Fixture
         $centre->setHoraireApresMidi('14H00 – 18H00');
         $centre->setCouleur('#aacc88');
         $manager->persist($centre);
-        $this->addReference(self::ILCI, $centre);
 
         $centre = new Centre();
         $centre->setNom('CESI Nanterre');
@@ -79,8 +73,14 @@ class CentreFixtures extends Fixture
         $centre->setHoraireApresMidi('13H00 – 16H30');
         $centre->setCouleur('#ff6622');
         $manager->persist($centre);
-        $this->addReference(self::CESI, $centre);
 
         $manager->flush();
+    }
+
+    public function getDependencies()
+    {
+        return [
+            PromoFixtures::class,
+        ];
     }
 }

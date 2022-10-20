@@ -18,16 +18,19 @@ class Promo
     #[ORM\Column(length: 255)]
     private ?string $nom = null;
 
-    #[ORM\ManyToOne(inversedBy: 'promos')]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?Centre $centre = null;
-
     #[ORM\ManyToMany(targetEntity: Cours::class, mappedBy: 'promo')]
     private Collection $cours;
+
+    #[ORM\ManyToOne(inversedBy: 'promos')]
+    private ?Centre $centre = null;
+
+    #[ORM\OneToMany(mappedBy: 'promo', targetEntity: Booking::class)]
+    private Collection $bookings;
 
     public function __construct()
     {
         $this->cours = new ArrayCollection();
+        $this->bookings = new ArrayCollection();
     }
 
     public function __toString()
@@ -48,18 +51,6 @@ class Promo
     public function setNom(string $nom): self
     {
         $this->nom = $nom;
-
-        return $this;
-    }
-
-    public function getCentre(): ?Centre
-    {
-        return $this->centre;
-    }
-
-    public function setCentre(?Centre $centre): self
-    {
-        $this->centre = $centre;
 
         return $this;
     }
@@ -86,6 +77,48 @@ class Promo
     {
         if ($this->cours->removeElement($cour)) {
             $cour->removePromo($this);
+        }
+
+        return $this;
+    }
+
+    public function getCentre(): ?Centre
+    {
+        return $this->centre;
+    }
+
+    public function setCentre(?Centre $centre): self
+    {
+        $this->centre = $centre;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Booking>
+     */
+    public function getBookings(): Collection
+    {
+        return $this->bookings;
+    }
+
+    public function addBooking(Booking $booking): self
+    {
+        if (!$this->bookings->contains($booking)) {
+            $this->bookings->add($booking);
+            $booking->setPromo($this);
+        }
+
+        return $this;
+    }
+
+    public function removeBooking(Booking $booking): self
+    {
+        if ($this->bookings->removeElement($booking)) {
+            // set the owning side to null (unless already changed)
+            if ($booking->getPromo() === $this) {
+                $booking->setPromo(null);
+            }
         }
 
         return $this;

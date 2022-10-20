@@ -42,12 +42,16 @@ class Centre
     #[ORM\Column(length: 255)]
     private ?string $couleur = null;
 
+    #[ORM\OneToMany(mappedBy: 'centre', targetEntity: Booking::class)]
+    private Collection $bookings;
+
     #[ORM\OneToMany(mappedBy: 'centre', targetEntity: Promo::class)]
     private Collection $promos;
 
     public function __construct()
     {
         $this->promos = new ArrayCollection();
+        $this->bookings = new ArrayCollection();
     }
 
     public function __toString()
@@ -164,6 +168,36 @@ class Centre
     public function setCouleur(string $couleur): self
     {
         $this->couleur = $couleur;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Booking>
+     */
+    public function getBookings(): Collection
+    {
+        return $this->bookings;
+    }
+
+    public function addBooking(Booking $booking): self
+    {
+        if (!$this->bookings->contains($booking)) {
+            $this->bookings->add($booking);
+            $booking->setCentre($this);
+        }
+
+        return $this;
+    }
+
+    public function removeBooking(Booking $booking): self
+    {
+        if ($this->bookings->removeElement($booking)) {
+            // set the owning side to null (unless already changed)
+            if ($booking->getCentre() === $this) {
+                $booking->setCentre(null);
+            }
+        }
 
         return $this;
     }

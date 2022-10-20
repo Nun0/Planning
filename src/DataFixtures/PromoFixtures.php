@@ -11,21 +11,26 @@ use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 
 class PromoFixtures extends Fixture implements DependentFixtureInterface
 {
+    public const DWWM = 'dwwm';
+    public const DTTE = 'dtte';
+
     public function load(ObjectManager $manager): void
     {
         $promo = new Promo();
         $promo -> setNom('DWWM');
-        $promo -> setCentre($this->getReference(CentreFixtures::NEXT));
         $promo -> addCour($this->getReference(CoursFixtures::JAVASCRIPT));
         $promo -> addCour($this->getReference(CoursFixtures::HTML));
         $manager->persist($promo);
+        $this->addReference(self::DWWM, $promo);
+
 
         $promo = new Promo();
         $promo -> setNom('DTTE');
-        $promo -> setCentre($this->getReference(CentreFixtures::ASTON));
         $promo -> addCour($this->getReference(CoursFixtures::PHP));
         $promo -> addCour($this->getReference(CoursFixtures::BOOTSTRAP));
         $manager->persist($promo);
+        $this->addReference(self::DTTE, $promo);
+
 
         $manager->flush();
     }
@@ -33,7 +38,6 @@ class PromoFixtures extends Fixture implements DependentFixtureInterface
     public function getDependencies()
     {
         return [
-            CentreFixtures::class,
             CoursFixtures::class,
         ];
     }

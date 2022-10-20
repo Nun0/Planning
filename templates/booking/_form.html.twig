@@ -1,6 +1,6 @@
 {{ form_start(form) }}
     {{ form_widget(form) }}
     <div class="d-flex justify-content-end">
-        <button class="btn btn-success">{{ button_label|default('Sauvegarder') }}</button>
+        <button class="btn btn-success" formnovalidate>{{ button_label|default('Sauvegarder') }}</button>
     </div>
 {{ form_end(form) }}
