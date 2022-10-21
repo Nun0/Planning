@@ -1,31 +1,6 @@
 {{ form_start(form) }}
     {{ form_widget(form) }}
     <div class="d-flex justify-content-end">
-        <button class="btn btn-success" formnovalidate>{{ button_label|default('Sauvegarder') }}</button>
+        <button class="btn btn-success" novalidate>{{ button_label|default('Sauvegarder') }}</button>
     </div>
 {{ form_end(form) }}
-<script>
-    var $centre = $('#booking_centre');
-    // When centre gets selected ...
-    $centre.change(function() {
-    // ... retrieve the corresponding form.
-    var $form = $(this).closest('form');
-    // Simulate form data, but only include the selected centre value.
-    var data = {};
-    data[$centre.attr('name')] = $centre.val();
-    // Submit data via AJAX to the form's action path.
-    $.ajax({
-        url : $form.attr('action'),
-        type: $form.attr('method'),
-        data : data,
-        complete: function(html) {
-        // Replace current position field ...
-        $('#booking_promo').replaceWith(
-            // ... with the returned one from the AJAX response.
-            $(html.responseText).find('#booking_promo')
-        );
-        // Position field now displays the appropriate positions.
-        }
-    });
-    });
-</script>
