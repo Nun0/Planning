@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Booking;
 use App\Form\BookingType;
 use App\Repository\BookingRepository;
+use App\Repository\PromoRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -28,11 +29,20 @@ class BookingController extends AbstractController
     }
 
     #[Route('/new', name: 'app_booking_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, BookingRepository $bookingRepository): Response
+    public function new(Request $request, BookingRepository $bookingRepository, PromoRepository $promoRepository): Response
     {
         $booking = new Booking();
         $form = $this->createForm(BookingType::class, $booking);
         $form->handleRequest($request);
+
+        if ($form->isSubmitted()&&$form->getData()->getPromo() == null){
+            $promos = $booking->getCentre()->getPromos();
+            foreach($promos as $promo){
+                    dump($promo);
+                }
+            dd($promos);
+        }
+        
 
         if ($form->isSubmitted() && $form->isValid()) {
             $bookingRepository->save($booking, true);

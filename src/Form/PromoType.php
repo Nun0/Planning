@@ -32,7 +32,7 @@ class PromoType extends AbstractType
                 'required' => false,
                 'label' => 'Cours :',
                 'multiple' => true,
-                'by_reference' => true,
+                'by_reference' => false,
                 'attr' => [
                     'class' => 'select2',
                     'data-placeholder' => 'Cours:',

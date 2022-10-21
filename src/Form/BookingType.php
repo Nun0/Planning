@@ -19,22 +19,24 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\ColorType;
 use Symfony\Component\Form\FormInterface;
+use Symfony\Component\Validator\Constraints\NotBlank;
 
 class BookingType extends AbstractType
 {
-    public function __construct(private PromoRepository $promoRepository){}
-
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add('beginAt', DateType::class, [
-                'required'=>true,
+                'required'=> true,
+                'constraints' => [
+                    new NotBlank()
+                ],
                 'label' => 'Date début',
                 'widget' => 'single_text',
                 'input' => 'datetime_immutable',
                 ])
                 ->add('endAt', DateType::class, [
-                    'required'=>true,
+                    'required'=> true,
                     'label' => 'Date fin',
                     'widget' => 'single_text',
                     'input' => 'datetime_immutable',
@@ -65,36 +67,47 @@ class BookingType extends AbstractType
                         return $cr->createQueryBuilder('c')->orderBy('c.nom', 'ASC');
                     },
                 ]);
-        
+
                 $formModifier = function (FormInterface $form, Centre $centre = null) {
-                    $promos = $centre === null ? [] : $this->promoRepository->findByCentreOrderedByAscName($centre);
+                    $promos = null === $centre ? [] : $centre->getPromos();
         
                     $form->add('promo', EntityType::class, [
                         'class' => Promo::class,
-                        'choice_label' => 'name',
-                        'disabled' => $centre === null,
                         'placeholder' => 'selectionez la promo...',
-                        'choices' => $promos
+                        'choices' => $promos,
                     ]);
                 };
-        
+
                 $builder->addEventListener(
                     FormEvents::PRE_SET_DATA,
                     function (FormEvent $event) use ($formModifier) {
                         $data = $event->getData();
-        
-                        $formModifier($event->getForm(), $data->getcentre());
+                        $formModifier($event->getForm(), $data->getCentre());
                     }
                 );
-        
+
                 $builder->get('centre')->addEventListener(
                     FormEvents::POST_SUBMIT,
                     function (FormEvent $event) use ($formModifier) {
+                        // It's important here to fetch $event->getForm()->getData(), as
+                        // $event->getData() will get you the client data (that is, the ID)
                         $centre = $event->getForm()->getData();
         
+                        // since we've added the listener to the child, we'll have to pass on
+                        // the parent to the callback function!
                         $formModifier($event->getForm()->getParent(), $centre);
                     }
                 );
+        
+                // ->add('promo', ChoiceType::class, [
+                //     'class' => Promo::class,
+                //     'label' => 'Promo:',
+                //     'required' => true,
+                //     'placeholder' => 'selectionez la promo...',
+                //     'choice_filter' => function(){
+
+                //     }
+                // ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

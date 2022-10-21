@@ -15,7 +15,7 @@
     </div>
 </div>
 {% endblock %}
-{% block javascripts %}
+{# {% block javascripts %}
 <script>
         document.addEventListener('DOMContentLoaded', function() {
             const centre = document.getElementById('booking_centre');
@@ -29,7 +29,6 @@
                 .then(html => {
                     const parser = new DOMParser();
                     const doc = parser.parseFromString(html, 'text/html');
-                    console.log(doc)
                     const newPromoField = doc.getElementById('booking_promo');
                     newPromoField.addEventListener('change', function(e) {
                         e.target.classList.remove('is-invalid');
@@ -42,4 +41,4 @@
             });
         });
     </script>
-{% endblock %}
+{% endblock %} #}
