@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\Entity\Centre;
 use App\Entity\Promo;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -37,6 +38,16 @@ class PromoRepository extends ServiceEntityRepository
         if ($flush) {
             $this->getEntityManager()->flush();
         }
+    }
+
+    public function findByCentreOrderedByAscName(Centre $centre): array
+    {
+        return $this->createQueryBuilder('p')
+            ->andWhere('p.centre = :centre')
+            ->setParameter('centre', $centre)
+            ->orderBy('p.nom', 'ASC')
+            ->getQuery()
+            ->getResult();
     }
 
 //    /**

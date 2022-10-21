@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Centre;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -37,6 +38,12 @@ class CentreRepository extends ServiceEntityRepository
         if ($flush) {
             $this->getEntityManager()->flush();
         }
+    }
+
+    public function findAllOrderedByAscNameQueryBuilder(): QueryBuilder
+    {
+        return $this->createQueryBuilder('c')
+            ->orderBy('c.nom', 'ASC');
     }
 
 //    /**

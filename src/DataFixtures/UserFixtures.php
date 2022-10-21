@@ -32,7 +32,6 @@ class UserFixtures extends Fixture implements FixtureGroupInterface
         $user->setPassword($this->encoder->hashPassword($user, 'password'));
         $manager->persist($user);
         
-
         $user = new User();
         $user->setNom("Toto");
         $user->setPrenom("Titi");
