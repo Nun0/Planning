@@ -76,6 +76,7 @@
             var $centre = $('#booking_centre');
             // When centre gets selected ...
             $centre.change(function() {
+            //    return; // Flo: deactivation du script pour essayer autre chose
             // ... retrieve the corresponding form.
             var $form = $(this).closest('form');
             // Simulate form data, but only include the selected centre value.

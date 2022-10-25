@@ -38,9 +38,9 @@ class BookingController extends AbstractController
         if ($form->isSubmitted()&&$form->getData()->getPromo() == null){
             $promos = $booking->getCentre()->getPromos();
             foreach($promos as $promo){
-                    dump($promo);
-                }
-            dd($promos);
+                            // dump($promo);
+            }
+            // dd($promos);
         }
         
 
