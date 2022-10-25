@@ -12,7 +12,7 @@ class SecurityController extends AbstractController
     #[Route(path: '/', name: 'app_login')]
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
-        if (in_array('ROLE_ADMIN', $this->getUser()->getRoles())) {
+        if ( $this->getUser() != null && in_array('ROLE_ADMIN', $this->getUser()->getRoles())) {
             return $this->redirectToRoute('app_booking_calendar');
         }
 
