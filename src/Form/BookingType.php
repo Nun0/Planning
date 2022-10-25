@@ -103,8 +103,10 @@ class BookingType extends AbstractType
                 FormEvents::PRE_SET_DATA,
                 function (FormEvent $event) use ($formModifier) {
                     $data = $event->getData();
-                    dump($data->getCentre());
-                    $formModifier($event->getForm(), $data->getCentre());
+                    dump($data);
+                    if($data->getCentre()){
+                        $formModifier($event->getForm(), $data->getCentre());
+                    }
                 }
             );
 

@@ -35,13 +35,14 @@ class BookingController extends AbstractController
         $form = $this->createForm(BookingType::class, $booking);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted()&&$form->getData()->getPromo() == null){
-            $promos = $booking->getCentre()->getPromos();
-            foreach($promos as $promo){
-                            // dump($promo);
-            }
-            // dd($promos);
-        }
+        // if ($form->isSubmitted()&&$form->getData()->getPromo() == null){
+            
+        //     $promos = $booking->getCentre()->getPromos();
+        //     foreach($promos as $promo){
+        //             dump($promo);
+        //         }
+        //     dd($promos);
+        // }
         
 
         if ($form->isSubmitted() && $form->isValid()) {
