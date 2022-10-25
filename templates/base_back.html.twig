@@ -14,14 +14,12 @@
             {{ encore_entry_link_tags('app') }}
         {% endblock %}
 
-        {% block javascripts %}
-            {{ encore_entry_script_tags('app') }}
-        {% endblock %}
+        
     </head>
     <body>
         <nav class="navbar navbar-light">
             <div class="container-fluid mx-4">
-                <a class="navbar-brand"><img src={{asset('images/logo.png')}} alt="logo" style="width:100px"></a>
+                <a class="navbar-brand" href="{{path('app_booking_calendar')}}"><img src={{asset('images/logo.png')}} alt="logo" style="width:100px"></a>
                 <div class="d-flex flex-row align-items-center" id="nav">
                     <div><a style="font-size:24px" class="nav-item nav-link text-danger" href="{{path('app_booking_calendar')}}">Planning</a></div>
                     <div><a style="font-size:24px" class="nav-item nav-link ms-5" href="{{path('app_admin_user_index')}}">Formateurs</a></div>
@@ -30,7 +28,6 @@
                     <div><a style="font-size:24px" class="nav-item nav-link ms-5" href="{{path('app_admin_cours_index')}}">Cours</a></div>
                     <div><a class="btn btn-danger ms-5" href={{path('app_logout')}} >Déconnexion</a></div>
                 </div>
-                
             </div>
         </nav>
 
@@ -72,30 +69,6 @@
                 });
             })
         </script>
-        <script>
-            var $centre = $('#booking_centre');
-            // When centre gets selected ...
-            $centre.change(function() {
-            // ... retrieve the corresponding form.
-            var $form = $(this).closest('form');
-            // Simulate form data, but only include the selected centre value.
-            var data = {};
-            data[$centre.attr('name')] = $centre.val();
-            // Submit data via AJAX to the form's action path.
-            $.ajax({
-                url : $form.attr('action'),
-                type: $form.attr('method'),
-                data : data,
-                complete: function(html) {
-                // Replace current position field ...
-                $('#booking_promo').replaceWith(
-                    // ... with the returned one from the AJAX response.
-                    $(html.responseText).find('#booking_promo')
-                );
-                // Position field now displays the appropriate positions.
-                }
-            });
-            });
-        </script>
+        {% block javascripts %}{% endblock %}
     </body>
 </html>
