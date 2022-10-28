@@ -16,9 +16,31 @@
 </div>
 {% endblock %}
 {% block javascripts %}
+{{ parent() }}
 <script>
         $(document).ready(function() {
-            var $centre = $('#booking_centre');
+            $("#booking_centre").change(function(){
+                let id_centre = $(this).val();
+
+                $.ajax({
+                    url: "/admin/dashboard/" + id_centre,
+                    type: "GET",
+                    data: {id: id_centre},
+                    success: function(promos){
+                        console.log(promos);
+                        $("#booking_promo").html('');
+
+                        for(promo in promos){
+                            $("#booking_promo").
+                            append("<option value="+ promos[promo].id +">"+ promos[promo].nom +"</option>");
+                        }
+
+                    }
+                });
+            })
+
+
+        /*     var $centre = $('#booking_centre');
             // When centre gets selected ...
             $centre.change(function() {
             // ... retrieve the corresponding form.
@@ -40,7 +62,7 @@
                         // Position field now displays the appropriate positions.
                         }
                     });
-            });
-        })
+            });*/
+        }) 
         </script>
 {% endblock %}

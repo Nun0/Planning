@@ -76,7 +76,14 @@ class BookingType extends AbstractType
                 'query_builder' => function(CentreRepository $cr){
                     return $cr->createQueryBuilder('c')->orderBy('c.nom', 'ASC');
                 },
+            ])->add('promo', EntityType::class, [
+                "label" => "promotion",
+                "class" => Promo::class,
+                "choice_label" => function($promo){
+                    return $promo->getNom();
+                }
             ]);
+
             /*
             ->add('promo', EntityType::class, [
                 'class' => Promo::class,
@@ -89,39 +96,39 @@ class BookingType extends AbstractType
                 }
             ]);
             */
-            $formModifier = function (FormInterface $form, Centre $centre = null) {
-                $promos = null === $centre ? [] : $centre->getPromos();
-                dump($promos);
-                $form->add('promo', EntityType::class, [
-                    'class' => Promo::class,
-                    'placeholder' => $centre?  $centre->getNom():"Selectionnez le centre", //'selectionez la promo...',
-                    'choices' => $promos,
-                ]);
-            };
+            // $formModifier = function (FormInterface $form, Centre $centre = null) {
+            //     $promos = null === $centre ? [] : $centre->getPromos();
+            //     dump($promos);
+            //     $form->add('promo', EntityType::class, [
+            //         'class' => Promo::class,
+            //         'placeholder' => $centre?  $centre->getNom():"Selectionnez le centre", //'selectionez la promo...',
+            //         'choices' => $promos,
+            //     ]);
+            // };
 
-            $builder->addEventListener(
-                FormEvents::PRE_SET_DATA,
-                function (FormEvent $event) use ($formModifier) {
-                    $data = $event->getData();
-                    dump($data);
-                    if($data->getCentre()){
-                        $formModifier($event->getForm(), $data->getCentre());
-                    }
-                }
-            );
+            // $builder->addEventListener(
+            //     FormEvents::PRE_SET_DATA,
+            //     function (FormEvent $event) use ($formModifier) {
+            //         $data = $event->getData();
+            //         dump($data);
+            //         if($data->getCentre()){
+            //             $formModifier($event->getForm(), $data->getCentre());
+            //         }
+            //     }
+            // );
 
-            $builder->get('centre')->addEventListener(
-                FormEvents::POST_SET_DATA,
-                function (FormEvent $event) use ($formModifier) {
-                    // It's important here to fetch $event->getForm()->getData(), as
-                    // $event->getData() will get you the client data (that is, the ID)
-                    $centre = $event->getForm()->getData();
-                    dump($centre);
-                    // since we've added the listener to the child, we'll have to pass on
-                    // the parent to the callback function!
-                    $formModifier($event->getForm()->getParent(), $centre);
-                }
-            );
+            // $builder->get('centre')->addEventListener(
+            //     FormEvents::POST_SET_DATA,
+            //     function (FormEvent $event) use ($formModifier) {
+            //         // It's important here to fetch $event->getForm()->getData(), as
+            //         // $event->getData() will get you the client data (that is, the ID)
+            //         $centre = $event->getForm()->getData();
+            //         dump($centre);
+            //         // since we've added the listener to the child, we'll have to pass on
+            //         // the parent to the callback function!
+            //         $formModifier($event->getForm()->getParent(), $centre);
+            //     }
+            // );
     }
 
     public function configureOptions(OptionsResolver $resolver): void

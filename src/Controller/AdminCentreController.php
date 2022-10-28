@@ -5,7 +5,9 @@ namespace App\Controller;
 use App\Entity\Centre;
 use App\Form\CentreType;
 use App\Repository\CentreRepository;
+use App\Repository\PromoRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -38,6 +40,24 @@ class AdminCentreController extends AbstractController
             'centre' => $centre,
             'form' => $form,
         ]);
+    }
+
+
+    #[Route('/{id}', name: 'app_admin_centre_ajax', methods: ['GET'])]
+    public function show_centre_by_ajax(Centre $centre, PromoRepository $promoRepo, Request $request): Response
+    {   
+        if( $request->isXmlHttpRequest() ){
+            $promos = $promoRepo->findByCentreOrderedByAscName($centre);
+
+            $promoCentre = [];
+            foreach($promos as $key => $value){
+                $promoCentre[$key]['id'] = $value->getId();
+                $promoCentre[$key]['nom'] = $value->getNom();
+            }
+
+            return new JsonResponse($promoCentre);
+        }
+        
     }
 
     #[Route('/{id}', name: 'app_admin_centre_show', methods: ['GET'])]

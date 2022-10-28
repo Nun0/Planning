@@ -16,6 +16,7 @@
 
         {% block javascripts %}
             {{ encore_entry_script_tags('app') }}
+            <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
         {% endblock %}
     </head>
     <body>
@@ -56,14 +57,14 @@
         <script  src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
         <script  src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/i18n/fr.js"></script>
         <script>
-            {# $(document).ready(function() {
+            /* $(document).ready(function() {
                 var $centre = $('#booking_centre'),
                     $promo = $('#booking_promo'),
                     $options = $promo.find('option');
                     $centre.on('change', function(){
                         $promo.html($options.filter('[value="'+this.value+'"]'));
                     }).trigger('change');
-            }) #}
+            }) */
         </script>
         <script>
             $(document).ready(function() {
@@ -73,7 +74,7 @@
             })
         </script>
         <script>
-            var $centre = $('#booking_centre');
+          /*  var $centre = $('#booking_centre');
             // When centre gets selected ...
             $centre.change(function() {
             //    return; // Flo: deactivation du script pour essayer autre chose
@@ -96,7 +97,7 @@
                 // Position field now displays the appropriate positions.
                 }
             });
-            });
+            });*/
         </script>
     </body>
 </html>
