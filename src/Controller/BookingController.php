@@ -37,7 +37,6 @@ class BookingController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $bookingRepository->save($booking, true);
-
             return $this->redirectToRoute('app_booking_calendar', [], Response::HTTP_SEE_OTHER);
         }
 

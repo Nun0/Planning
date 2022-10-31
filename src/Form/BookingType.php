@@ -23,7 +23,6 @@ class BookingType extends AbstractType
     
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        $promos= ["Aucune"];
         $builder
             ->add('beginAt', DateType::class, [
                 'constraints' => [
@@ -39,7 +38,7 @@ class BookingType extends AbstractType
                 'widget' => 'single_text',
                 'input' => 'datetime_immutable',
                 ])
-            ->add('color', ColorType::class)
+
             ->add('formateur', EntityType::class, [
                 'class' => User::class,
                 'constraints' => [
@@ -71,6 +70,7 @@ class BookingType extends AbstractType
             ->add('promo', EntityType::class, [
                 "label" => "Promo: ",
                 "class" => Promo::class,
+                'placeholder' => 'selectionez la promo... ',
                 "choice_label" => function($promo){
                     return $promo->getNom();
                 }
@@ -78,6 +78,11 @@ class BookingType extends AbstractType
                 
             ->add('title', TextType::class, [
                 "label" => " Promo (texte libre): ",
+                'help' => 'complement pour la promo, choisiz la promo avant ',
+                'attr' => [
+                    'placeholder' => 'specification de la promo...',
+                    'class' => 'text-black'
+                ],
                 'constraints' => [
                     new NotBlank(['message' => 'Ce champs ne peut pas être vide'])
                 ],
@@ -86,6 +91,7 @@ class BookingType extends AbstractType
             ->add('cours', EntityType::class, [
                 "label" => "Cours: ",
                 "class" => Cours::class,
+                'placeholder' => 'selectionez le cours... ',
                 "choice_label" => function($cours){
                 return $cours->getModule();
                 }
