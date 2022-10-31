@@ -4,8 +4,10 @@ namespace App\Controller;
 
 use App\Entity\Promo;
 use App\Form\PromoType;
+use App\Repository\CoursRepository;
 use App\Repository\PromoRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -38,6 +40,23 @@ class AdminPromoController extends AbstractController
             'promo' => $promo,
             'form' => $form,
         ]);
+    }
+
+    #[Route('/{id}', name: 'app_admin_promo_ajax', methods: ['GET'])]
+    public function show_promo_by_ajax(Promo $promo, CoursRepository $coursRepo, Request $request): Response
+    {   
+        if( $request->isXmlHttpRequest() ){
+            $cours = $coursRepo->findByPromoOrderedByAscName($promo);
+            dump($cours);
+            $coursPromo = [];
+            foreach($cours as $key => $value){
+                $coursPromo[$key]['id'] = $value->getId();
+                $coursPromo[$key]['module'] = $value->getModule();
+            }
+
+            return new JsonResponse($coursPromo);
+        }
+        
     }
 
     #[Route('/{id}', name: 'app_admin_promo_show', methods: ['GET'])]

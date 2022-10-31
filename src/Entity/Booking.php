@@ -36,6 +36,9 @@ class Booking
     #[ORM\ManyToOne(inversedBy: 'bookings')]
     private ?Promo $promo = null;
 
+    #[ORM\ManyToOne(inversedBy: 'bookings')]
+    private ?Cours $cours = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -121,6 +124,18 @@ class Booking
     public function setPromo(?Promo $promo): self
     {
         $this->promo = $promo;
+
+        return $this;
+    }
+
+    public function getCours(): ?Cours
+    {
+        return $this->cours;
+    }
+
+    public function setCours(?Cours $cours): self
+    {
+        $this->cours = $cours;
 
         return $this;
     }

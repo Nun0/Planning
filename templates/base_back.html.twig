@@ -57,47 +57,11 @@
         <script  src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
         <script  src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/i18n/fr.js"></script>
         <script>
-            /* $(document).ready(function() {
-                var $centre = $('#booking_centre'),
-                    $promo = $('#booking_promo'),
-                    $options = $promo.find('option');
-                    $centre.on('change', function(){
-                        $promo.html($options.filter('[value="'+this.value+'"]'));
-                    }).trigger('change');
-            }) */
-        </script>
-        <script>
             $(document).ready(function() {
                 $('.select2').select2({
                     "language": "fr"
                 });
             })
-        </script>
-        <script>
-          /*  var $centre = $('#booking_centre');
-            // When centre gets selected ...
-            $centre.change(function() {
-            //    return; // Flo: deactivation du script pour essayer autre chose
-            // ... retrieve the corresponding form.
-            var $form = $(this).closest('form');
-            // Simulate form data, but only include the selected centre value.
-            var data = {};
-            data[$centre.attr('name')] = $centre.val();
-            // Submit data via AJAX to the form's action path.
-            $.ajax({
-                url : $form.attr('action'),
-                type: $form.attr('method'),
-                data : data,
-                complete: function(html) {
-                // Replace current position field ...
-                $('#booking_promo').replaceWith(
-                    // ... with the returned one from the AJAX response.
-                    $(html.responseText).find('#booking_promo')
-                );
-                // Position field now displays the appropriate positions.
-                }
-            });
-            });*/
         </script>
     </body>
 </html>

@@ -38,31 +38,29 @@
                     }
                 });
             })
-
-
-        /*     var $centre = $('#booking_centre');
-            // When centre gets selected ...
-            $centre.change(function() {
-            // ... retrieve the corresponding form.
-            var $form = $(this).closest('form');
-            // Simulate form data, but only include the selected centre value.
-            var data = {};
-            data[$centre.attr('name')] = $centre.val();
-            // Submit data via AJAX to the form's action path.
-                    $.ajax({
-                        url : $form.attr('action'),
-                        type: $form.attr('method'),
-                        data : data,
-                        complete: function(html) {
-                        // Replace current position field ...
-                        $('#booking_promo').replaceWith(
-                            // ... with the returned one from the AJAX response.
-                            $(html.responseText).find('#booking_promo')
-                        );
-                        // Position field now displays the appropriate positions.
-                        }
-                    });
-            });*/
         }) 
-        </script>
+</script>
+<script>
+        $(document).ready(function() {
+            $("#booking_promo").change(function(){
+                let id_promo = $(this).val();
+
+                $.ajax({
+                    url: "/admin/promo/" + id_promo,
+                    type: "GET",
+                    data: {id: id_promo},
+                    success: function(cours){
+                        console.log(cours);
+                        $("#booking_cours").html('');
+
+                        for(cour in cours){
+                            $("#booking_cours").
+                            append("<option value="+ cours[cour].id +">"+ cours[cour].module +"</option>");
+                        }
+
+                    }
+                });
+            })
+        }) 
+</script>
 {% endblock %}

@@ -21,9 +21,13 @@ class Cours
     #[ORM\ManyToMany(targetEntity: Promo::class, inversedBy: 'cours')]
     private Collection $promo;
 
+    #[ORM\OneToMany(mappedBy: 'cours', targetEntity: Booking::class)]
+    private Collection $bookings;
+
     public function __construct()
     {
         $this->promo = new ArrayCollection();
+        $this->bookings = new ArrayCollection();
     }
 
     public function __toString()
@@ -68,6 +72,36 @@ class Cours
     public function removePromo(Promo $promo): self
     {
         $this->promo->removeElement($promo);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Booking>
+     */
+    public function getBookings(): Collection
+    {
+        return $this->bookings;
+    }
+
+    public function addBooking(Booking $booking): self
+    {
+        if (!$this->bookings->contains($booking)) {
+            $this->bookings->add($booking);
+            $booking->setCours($this);
+        }
+
+        return $this;
+    }
+
+    public function removeBooking(Booking $booking): self
+    {
+        if ($this->bookings->removeElement($booking)) {
+            // set the owning side to null (unless already changed)
+            if ($booking->getCours() === $this) {
+                $booking->setCours(null);
+            }
+        }
 
         return $this;
     }

@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Cours;
+use App\Entity\Promo;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -37,6 +38,16 @@ class CoursRepository extends ServiceEntityRepository
         if ($flush) {
             $this->getEntityManager()->flush();
         }
+    }
+
+    public function findByPromoOrderedByAscName(Promo $promo): array
+    {
+        return $this->createQueryBuilder('c')
+            ->where(':promo MEMBER OF c.promo')
+            ->setParameter('promo', $promo)
+            ->orderBy('c.module', 'ASC')
+            ->getQuery()
+            ->getResult();
     }
 
 //    /**

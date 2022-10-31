@@ -29,26 +29,16 @@ class BookingController extends AbstractController
     }
 
     #[Route('/new', name: 'app_booking_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, BookingRepository $bookingRepository, PromoRepository $promoRepository): Response
+    public function new(Request $request, BookingRepository $bookingRepository): Response
     {
         $booking = new Booking();
         $form = $this->createForm(BookingType::class, $booking);
         $form->handleRequest($request);
 
-        // if ($form->isSubmitted()&&$form->getData()->getPromo() == null){
-            
-        //     $promos = $booking->getCentre()->getPromos();
-        //     foreach($promos as $promo){
-        //             dump($promo);
-        //         }
-        //     dd($promos);
-        // }
-        
-
         if ($form->isSubmitted() && $form->isValid()) {
             $bookingRepository->save($booking, true);
 
-            return $this->redirectToRoute('app_booking_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_booking_calendar', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('booking/new.html.twig', [
