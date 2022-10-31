@@ -6,6 +6,7 @@ use App\Entity\Booking;
 use App\Form\BookingType;
 use App\Repository\BookingRepository;
 use App\Repository\PromoRepository;
+use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -23,9 +24,11 @@ class BookingController extends AbstractController
     }
 
     #[Route('/calendar', name: 'app_booking_calendar', methods: ['GET'])]
-    public function calendar(): Response
+    public function calendar(UserRepository $userRepository): Response
     {
-        return $this->render('booking/calendar.html.twig');
+        return $this->render('booking/calendar.html.twig', [
+            'users' => $userRepository->findAll(),
+        ]);
     }
 
     #[Route('/new', name: 'app_booking_new', methods: ['GET', 'POST'])]

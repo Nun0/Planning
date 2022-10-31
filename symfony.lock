@@ -50,6 +50,9 @@
             "./migrations/.gitignore"
         ]
     },
+    "dyg81/modal-bundle": {
+        "version": "v2.0.5"
+    },
     "phpunit/phpunit": {
         "version": "9.5",
         "recipe": {

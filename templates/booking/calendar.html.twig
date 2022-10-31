@@ -6,8 +6,12 @@
         <div class="col-md-10 p-0 m-1" id="div1">
             <div id="calendar-holder"></div>
         </div>
-        <div class="col-md-2 p-5 m-0" id="div2">
-            <a href="{{ path('app_booking_new') }}" class="btn btn-primary">Nouvelle Mission</a>
+        <div class="col-md-2 m-0" id="div2">
+            <a href="{{ path('app_booking_new') }}" class="btn btn-primary m-5">Nouvelle Mission</a>
+            <h5 class="text-center">Code Couleur Formateurs:</h5>
+            {% for user in users %}
+                <div class="text-center button m-1 text-white" style="background-color: {{ user.couleur }}; border-radius:5px">{{ user.prenom }} {{ user.nom }}</div>
+            {% endfor %}
         </div>
     </div>
 </div>

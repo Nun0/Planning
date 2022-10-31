@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "227a9cc3521fca208794a0a3e31844b9",
+    "content-hash": "4e88479e61efd6a1320a958faeb204d1",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -1374,6 +1374,63 @@
                 "source": "https://github.com/doctrine/sql-formatter/tree/1.1.3"
             },
             "time": "2022-05-23T21:33:49+00:00"
+        },
+        {
+            "name": "dyg81/modal-bundle",
+            "version": "v2.0.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/dyg81/modal-bundle.git",
+                "reference": "67e95a9d596b8b637c7cf332d4dfdadc1b4e5e89"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/dyg81/modal-bundle/zipball/67e95a9d596b8b637c7cf332d4dfdadc1b4e5e89",
+                "reference": "67e95a9d596b8b637c7cf332d4dfdadc1b4e5e89",
+                "shasum": ""
+            },
+            "require": {
+                "sensio/framework-extra-bundle": "^5.1||^6.1",
+                "symfony/framework-bundle": "^4.4||^5.3",
+                "symfony/translation": "^4.4||^5.3",
+                "twig/extra-bundle": "^3.0"
+            },
+            "type": "symfony-bundle",
+            "autoload": {
+                "psr-4": {
+                    "Dyg81\\ModalBundle\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Donald Yañez González",
+                    "email": "donald.yanez@gmail.com",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Rares Serban",
+                    "email": "raresserban96@gmail.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Symfony bundle that lets you open Bootstrap modals easily.",
+            "homepage": "https://github.com/dyg81/modal-bundle",
+            "keywords": [
+                "ajax",
+                "bootstrap",
+                "bundle",
+                "modal",
+                "symfony"
+            ],
+            "support": {
+                "issues": "https://github.com/dyg81/modal-bundle/issues",
+                "source": "https://github.com/dyg81/modal-bundle/tree/v2.0.5"
+            },
+            "time": "2021-11-08T12:28:14+00:00"
         },
         {
             "name": "egulias/email-validator",

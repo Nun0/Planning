@@ -67,7 +67,7 @@ class CalendarSubscriber implements EventSubscriberInterface
             'title' => $booking->getCours() .' - '. $booking->getPromo() .' '. $booking->getTitle() .' - '. $booking->getCentre(),
             
             ]);
-            // $booking->setCouleur('#ffffff');
+            
             $bookingEvent->addOption(
                 'url',
                 $this->router->generate('app_booking_show', [
