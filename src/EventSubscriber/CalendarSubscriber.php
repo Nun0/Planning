@@ -64,13 +64,12 @@ class CalendarSubscriber implements EventSubscriberInterface
             $bookingEvent->setOptions([
             'backgroundColor' => $booking->getFormateur()->getCouleur(),
             'borderColor' => $booking->getFormateur()->getCouleur(),
-            'title' => $booking->getCours() .' - '. $booking->getPromo() .' '. $booking->getTitle() .' - '. $booking->getCentre(),
-            
+            'title' => ' ' . $booking->getCours() .' - '. $booking->getPromo() .' '. $booking->getTitle() .' - '. $booking->getCentre(),
             ]);
             
             $bookingEvent->addOption(
                 'url',
-                $this->router->generate('app_booking_show', [
+                $this->router->generate('app_booking_edit', [
                     'id' => $booking->getId(),
                 ])
             );

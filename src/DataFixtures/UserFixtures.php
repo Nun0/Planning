@@ -37,7 +37,7 @@ class UserFixtures extends Fixture implements FixtureGroupInterface
         $user->setPrenom("Titi");
         $user->setTelephone("010101");
         $user->setEmail("toto@gmail.com");
-        $user->setCouleur("#ffffff");
+        $user->setCouleur("#9B9797");
         $user->setRoles(["ROLE_USER"]);
         $user->setPlainPassword('password');
         $user->setPassword($this->encoder->hashPassword($user, 'password'));
