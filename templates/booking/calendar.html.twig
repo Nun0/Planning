@@ -44,6 +44,7 @@
                 {# eventResizableFromStart: true #}
                 eventDisplay: 'block',
                 weekends: false,
+                nextDayThreshold: "00:00:00",
                 eventSources: [
                     {
                         url: "{{ path('fc_load_events') }}",
@@ -60,6 +61,15 @@
                     left: 'prev,next today',
                     center: 'title',
                     right: 'dayGridMonth,timeGridWeek,timeGridDay',
+                },
+                eventDidMount: function(info) {
+                    var tooltip = new bootstrap.Tooltip(info.el, {
+                        title: "<div></div></hr style='color:#fff'><div>" + info.event.title + "</div>",
+                        placement: 'top',
+                        trigger: 'hover',
+                        container: 'body',
+                        html: true,
+                    });
                 },
             });
             calendar.render();
