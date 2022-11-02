@@ -3,32 +3,43 @@
 {% block title %}Booking{% endblock %}
 
 {% block body %}
-    <h1>Booking</h1>
+<div style="background-color: #D1D1D1; min-height:100vh">
+    <div class="container" style="max-width:50vw">
+    <h1 style="text-align:center" class="pt-4">Mission</h1>
 
+    <a href="{{ path('app_booking_calendar') }}" class="btn btn-primary mb-3">Retour au Planning</a>
     <table class="table">
         <tbody>
             <tr>
-                <th>Id</th>
-                <td>{{ booking.id }}</td>
+                <th>Date de début</th>
+                <td>{{ booking.beginAt ? booking.beginAt|date('d-m-Y') : '' }}</td>
             </tr>
             <tr>
-                <th>BeginAt</th>
-                <td>{{ booking.beginAt ? booking.beginAt|date('Y-m-d H:i:s') : '' }}</td>
+                <th>Date de fin</th>
+                <td>{{ booking.endAt ? booking.endAt|date('d-m-Y') : '' }}</td>
             </tr>
             <tr>
-                <th>EndAt</th>
-                <td>{{ booking.endAt ? booking.endAt|date('Y-m-d H:i:s') : '' }}</td>
+                <th>Formateur</th>
+                <td>{{ booking.formateur }}</td>
             </tr>
             <tr>
-                <th>Title</th>
-                <td>{{ booking.title }}</td>
+                <th>Centre</th>
+                <td>{{ booking.centre }}</td>
+            </tr>
+            <tr>
+                <th>Promo</th>
+                <td>{{ booking.promo }} {{ booking.title }}</td>
+            </tr>
+            <tr>
+                <th>Cours</th>
+                <td>{{ booking.cours }}</td>
             </tr>
         </tbody>
     </table>
 
-    <a href="{{ path('app_booking_index') }}">back to list</a>
-
-    <a href="{{ path('app_booking_edit', {'id': booking.id}) }}">edit</a>
-
+    <a href="{{ path('app_booking_edit', {'id': booking.id}) }}" class="btn btn-primary mb-3">Modifier</a>
     {{ include('booking/_delete_form.html.twig') }}
+
+    </div>
+</div>
 {% endblock %}

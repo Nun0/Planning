@@ -3,11 +3,74 @@
 {% block title %}Edit Booking{% endblock %}
 
 {% block body %}
-    <h1>Edit Booking</h1>
-
-    {{ include('booking/_form.html.twig', {'button_label': 'Update'}) }}
-
-    <a href="{{ path('app_booking_index') }}">back to list</a>
-
+<div style="background-color: #D1D1D1; min-height:100vh">
+    <div class="container" style="max-width:50vw">
+    <h1 style="text-align:center" class="pt-4">Modifier Mission</h1>
+    <a href="{{ path('app_booking_calendar') }}" class="btn btn-primary mb-3">Retour au Planning</a>
+    {{ include('booking/_form.html.twig', {'button_label': 'Modifier'}) }}
     {{ include('booking/_delete_form.html.twig') }}
+    </div>
+</div>
 {% endblock %}
+{% block javascripts %}
+{{ parent() }}
+<script>
+        $(document).ready(function() {
+            $("#booking_centre").change(function(){
+                let id_centre = $(this).val();
+
+                $.ajax({
+                    url: "/admin/dashboard/" + id_centre,
+                    type: "GET",
+                    data: {id: id_centre},
+                    success: function(promos){
+                        console.log(promos);
+                        $("#booking_promo").html('');
+                        if(promos.length > 0){
+                            $("#booking_promo").
+                            append("<option value selected='selected'>sélectionnez la promo...</option>");
+                            for(promo in promos){
+                                $("#booking_promo").
+                                append("<option value="+ promos[promo].id +">"+ promos[promo].nom +"</option>");
+                            }   
+                        } else {
+                            $("#booking_promo").
+                                append("<option>pas de résultats trouvés</option>");
+                        }
+                    }
+                });
+            })
+        }) 
+</script>
+<script>
+        $(document).ready(function() {
+            $("#booking_promo").change(function(){
+                let id_promo = $(this).val();
+
+                $.ajax({
+                    url: "/admin/promo/" + id_promo,
+                    type: "GET",
+                    data: {id: id_promo},
+                    success: function(cours){
+                        console.log(cours);
+                        $("#booking_cours").html('');
+
+                        if(cours.length > 0){
+                            $("#booking_cours").
+                            append("<option value selected='selected'>sélectionnez le cours...</option>");
+                            for(cour in cours){
+                                $("#booking_cours").
+                                append("<option value="+ cours[cour].id +">"+ cours[cour].module +"</option>");
+                            }
+                        } else {
+                            $("#booking_cours").
+                            append("<option>pas de résultats trouvés</option>");
+                        }
+                    }
+                });
+            })
+        }) 
+</script>
+{% endblock %}
+
+    
