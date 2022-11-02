@@ -29,12 +29,17 @@
                     success: function(promos){
                         console.log(promos);
                         $("#booking_promo").html('');
-
-                        for(promo in promos){
+                        if(promos.length > 0){
                             $("#booking_promo").
-                            append("<option value="+ promos[promo].id +">"+ promos[promo].nom +"</option>");
+                            append("<option value selected='selected'>sélectionnez la promo...</option>");
+                            for(promo in promos){
+                                $("#booking_promo").
+                                append("<option value="+ promos[promo].id +">"+ promos[promo].nom +"</option>");
+                            }   
+                        } else {
+                            $("#booking_promo").
+                                append("<option>Pas de résultats trouvés</option>");
                         }
-
                     }
                 });
             })
@@ -53,11 +58,17 @@
                         console.log(cours);
                         $("#booking_cours").html('');
 
-                        for(cour in cours){
+                        if(cours.length > 0){
                             $("#booking_cours").
-                            append("<option value="+ cours[cour].id +">"+ cours[cour].module +"</option>");
+                            append("<option value selected='selected'>sélectionnez le cours...</option>");
+                            for(cour in cours){
+                                $("#booking_cours").
+                                append("<option value="+ cours[cour].id +">"+ cours[cour].module +"</option>");
+                            }
+                        } else {
+                            $("#booking_cours").
+                            append("<option>Pas de résultats trouvés</option>");
                         }
-
                     }
                 });
             })

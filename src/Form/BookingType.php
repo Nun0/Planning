@@ -52,7 +52,7 @@ class BookingType extends AbstractType
                     return $ur->createQueryBuilder('u')->orderBy('u.prenom', 'ASC');
                 },
                 'label' => 'Formateur: ',
-                'placeholder' => 'selectionez le formateur... ',
+                'placeholder' => 'sélectionnez le formateur... ',
                 'multiple' => false,
                 'by_reference' => true,
             ])
@@ -61,7 +61,7 @@ class BookingType extends AbstractType
                 'class' => Centre::class,
                 'required' => false,
                 'label' => 'Centre: ',
-                'placeholder' => 'selectionez le centre... ',
+                'placeholder' => 'sélectionnez le centre... ',
                 'query_builder' => function(CentreRepository $cr){
                     return $cr->createQueryBuilder('c')->orderBy('c.nom', 'ASC');
                 },
@@ -70,7 +70,7 @@ class BookingType extends AbstractType
             ->add('promo', EntityType::class, [
                 "label" => "Promo: ",
                 "class" => Promo::class,
-                'placeholder' => 'selectionez la promo... ',
+                'placeholder' => 'sélectionnez la promo... ',
                 "choice_label" => function($promo){
                     return $promo->getNom();
                 }
@@ -91,7 +91,7 @@ class BookingType extends AbstractType
             ->add('cours', EntityType::class, [
                 "label" => "Cours: ",
                 "class" => Cours::class,
-                'placeholder' => 'selectionez le cours... ',
+                'placeholder' => 'sélectionnez le cours... ',
                 "choice_label" => function($cours){
                 return $cours->getModule();
                 }
