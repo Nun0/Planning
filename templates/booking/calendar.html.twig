@@ -63,8 +63,23 @@
                     right: 'dayGridMonth,timeGridWeek,timeGridDay',
                 },
                 eventDidMount: function(info) {
+                    var matin = info.event.extendedProps.matin;
+                    var aprem = info.event.extendedProps.aprem;
+                    var day = ((matin && aprem )? true : false);
                     var tooltip = new bootstrap.Tooltip(info.el, {
-                        title: "<div></div></hr style='color:#fff'><div>" + info.event.title + "</div>",
+                        title:  "<div>"+info.event.extendedProps.formateur+
+                                "</div><div> "+info.event.start.toLocaleString('fr-FR',{
+                                                        day: '2-digit',
+                                                        month: 'long',
+                                                        year: 'numeric',
+                                                    })+
+                                "</div><div> "+info.event.end.toLocaleString('fr-FR',{
+                                                        day: '2-digit',
+                                                        month: 'long',
+                                                        year: 'numeric',
+                                                    })+
+                                "</div><div> "+ (day?"Matin + Après-midi":(matin? "Matin":"Après-midi")) +
+                                "</div>",
                         placement: 'top',
                         trigger: 'hover',
                         container: 'body',

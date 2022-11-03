@@ -36,6 +36,12 @@ class Booking
     #[ORM\ManyToOne(inversedBy: 'bookings')]
     private ?Cours $cours = null;
 
+    #[ORM\Column]
+    private ?bool $matin = null;
+
+    #[ORM\Column]
+    private ?bool $aprem = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -121,6 +127,30 @@ class Booking
     public function setCours(?Cours $cours): self
     {
         $this->cours = $cours;
+
+        return $this;
+    }
+
+    public function isMatin(): ?bool
+    {
+        return $this->matin;
+    }
+
+    public function setMatin(bool $matin): self
+    {
+        $this->matin = $matin;
+
+        return $this;
+    }
+
+    public function isAprem(): ?bool
+    {
+        return $this->aprem;
+    }
+
+    public function setAprem(bool $aprem): self
+    {
+        $this->aprem = $aprem;
 
         return $this;
     }

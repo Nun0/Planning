@@ -12,6 +12,7 @@ use App\Repository\UserRepository;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\ColorType;
@@ -28,15 +29,27 @@ class BookingType extends AbstractType
                 'constraints' => [
                     new NotBlank(['message' => 'Ce champs ne peut pas être vide'])
                 ],
-                'label' => 'Date début',
+                'label' => 'Date début: ',
                 'widget' => 'single_text',
                 'input' => 'datetime_immutable',
                 ])
 
             ->add('endAt', DateType::class, [
-                'label' => 'Date fin',
+                'label' => 'Date fin: ',
                 'widget' => 'single_text',
                 'input' => 'datetime_immutable',
+                ])
+
+            ->add('matin', CheckboxType::class, [
+                'label' => 'Matin',
+                'required' => false,
+                'data' => true,
+                ])
+
+            ->add('aprem', CheckboxType::class, [
+                'label' => 'Après-midi',
+                'required' => false,
+                'data' => true,
                 ])
 
             ->add('formateur', EntityType::class, [

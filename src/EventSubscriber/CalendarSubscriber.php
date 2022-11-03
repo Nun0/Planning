@@ -65,6 +65,9 @@ class CalendarSubscriber implements EventSubscriberInterface
             'backgroundColor' => $booking->getFormateur()->getCouleur(),
             'borderColor' => $booking->getFormateur()->getCouleur(),
             'title' => ' ' . $booking->getCours() .' - '. $booking->getPromo() .' '. $booking->getTitle() .' - '. $booking->getCentre(),
+            'formateur' => $booking->getFormateur()->getPrenom() . ' ' . $booking->getFormateur()->getNom(),
+            'matin' => $booking->isMatin(),
+            'aprem' => $booking->isAprem(),
             ]);
             
             $bookingEvent->addOption(
