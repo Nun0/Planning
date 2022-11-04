@@ -35,65 +35,66 @@
 
 	<script type="text/javascript">
 		document.addEventListener('DOMContentLoaded', () => {
-var calendarEl = document.getElementById('calendar-holder');
+            var calendarEl = document.getElementById('calendar-holder');
 
-var calendar = new FullCalendar.Calendar(calendarEl, {
-initialView: 'dayGridMonth',
-locale: 'fr-FR',
-themeSystem: 'bootstrap5',
-timeZone: 'Europe/Paris',
-displayEventTime: false,
-editable: false, {
-# eventResizableFromStart: true #
-}
-eventDisplay: 'block',
-weekends: false,
-nextDayThreshold: "00:00:00",
-eventSources: [
-{
-url: "{{ path('fc_load_events') }}",
-method: "POST",
-extraParams: {
-filters: JSON.stringify({% if is_granted('ROLE_ADMIN') %}
-{"user": "-1"}
-{% else %}
-{"user": "{{ app.user.id }}"}
-{% endif %})
-},
-failure: () => {
-alert("There was an error while fetching FullCalendar!");
-}
-},
-],
-headerToolbar: {
-left: 'prev,next today',
-center: 'title',
-right: 'dayGridMonth,timeGridWeek,timeGridDay'
-},
-eventDidMount: function (info) {
-var matin = info.event.extendedProps.matin;
-var aprem = info.event.extendedProps.aprem;
-var day = ((matin && aprem) ? true : false);
-var tooltip = new bootstrap.Tooltip(info.el, {
-title: "<div>" + info.event.extendedProps.formateur + "</div><div> " + info.event.start.toLocaleString('fr-FR', {
-day: '2-digit',
-month: 'long',
-year: 'numeric'
-}) + "</div><div> " + info.event.end.toLocaleString('fr-FR', {
-day: '2-digit',
-month: 'long',
-year: 'numeric'
-}) + "</div><div> " + (
-day ? "Matin + Après-midi" : (matin ? "Matin" : "Après-midi")
-) + "</div>",
-placement: 'top',
-trigger: 'hover',
-container: 'body',
-html: true
-});
-}
-});
-calendar.render();
-});
-	</script>
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                initialView: 'dayGridMonth',
+                locale: 'fr-FR',
+                themeSystem: 'bootstrap5',
+                timeZone: 'Europe/Paris',
+                displayEventTime: false,
+                editable: false, 
+                {# eventResizableFromStart: true #}
+                eventDisplay: 'block',
+                weekends: false,
+                nextDayThreshold: "00:00:00",
+                eventSources: [
+                    {
+                        url: "{{ path('fc_load_events') }}",
+                        method: "POST",
+                        extraParams: {
+                                filters: JSON.stringify(
+                                    {% if is_granted('ROLE_ADMIN') %}
+                                    {"user": "-1"}
+                                    {% else %}
+                                    {"user": "{{ app.user.id }}"}
+                                    {% endif %}
+                                )
+                            },
+                        failure: () => {
+                        alert("There was an error while fetching FullCalendar!");
+                        }
+                    },
+                ],
+                headerToolbar: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'dayGridMonth,timeGridWeek,timeGridDay'
+                },
+                eventDidMount: function (info) {
+                    var matin = info.event.extendedProps.matin;
+                    var aprem = info.event.extendedProps.aprem;
+                    var day = ((matin && aprem) ? true : false);
+                    var tooltip = new bootstrap.Tooltip(info.el, {
+                        title:  "<div>" + info.event.extendedProps.formateur + 
+                                "</div><div> " + info.event.start.toLocaleString('fr-FR', {
+                                                            day: '2-digit',
+                                                            month: 'long',
+                                                            year: 'numeric'}) + 
+                                "</div><div> " + info.event.end.toLocaleString('fr-FR', {
+                                                            day: '2-digit',
+                                                            month: 'long',
+                                                            year: 'numeric'}) + 
+                                "</div><div> " + (day ? "Matin + Après-midi" : (matin ? "Matin" : "Après-midi")) + 
+                                "</div>",
+                        placement: 'top',
+                        trigger: 'hover',
+                        container: 'body',
+                        html: true
+                    });
+                }
+            });
+            calendar.render();
+        });
+    </script>
 {% endblock %}
