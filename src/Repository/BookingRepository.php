@@ -39,6 +39,18 @@ class BookingRepository extends ServiceEntityRepository
         }
     }
 
+    public function findByUserId($user): array
+    {
+        return $this->createQueryBuilder('b')
+            ->andWhere('b.formateur = :val')
+            ->setParameter('val', $user)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
+    
+
 //    /**
 //     * @return Booking[] Returns an array of Booking objects
 //     */

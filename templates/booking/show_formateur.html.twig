@@ -1,0 +1,64 @@
+{% extends 'base_front.html.twig' %}
+
+{% block title %}Booking{% endblock %}
+
+{% block body %}
+<div style="background-color: #D1D1D1; min-height:100vh">
+    <div class="d-flex">
+        <div class="col-md-8 p-0 " id="div1">
+            <div class="container me-0" style="max-width:30vw">
+            <h1 style="text-align:center" class="pt-4">Mission</h1>
+
+            <a href="{{ path('app_booking_formateur') }}" class="btn btn-primary mb-3">Retour au Planning</a>
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <th>Journèe</th>
+                        <td>{{ booking.matin ? ( booking.aprem ? 'Matin + Après-midi' : 'Matin') : 'Après-midi' }}</td>
+                    </tr>
+                    <tr>
+                        <th>Date de début</th>
+                        <td>{{ booking.beginAt ? booking.beginAt|date('d-m-Y') : '' }}</td>
+                    </tr>
+                    <tr>
+                        <th>Date de fin</th>
+                        <td>{{ booking.endAt ? booking.endAt|date('d-m-Y') : '' }}</td>
+                    </tr>
+                    <tr>
+                        <th>Formateur</th>
+                        <td>{{ booking.formateur.prenom }} {{ booking.formateur.nom }}</td>
+                    </tr>
+                    <tr>
+                        <th>Centre</th>
+                        <td>{{ booking.centre }}</td>
+                    </tr>
+                    <tr>
+                        <th>Promo</th>
+                        <td>{{ booking.promo }} {{ booking.title }}</td>
+                    </tr>
+                    <tr>
+                        <th>Cours</th>
+                        <td>{{ booking.cours }}</td>
+                    </tr>
+                </tbody>
+            </table>
+            </div>
+        </div>
+        <div class="col-md-4 m-0" id="div2">
+            <div class="container bg-white text-center text-danger h4" style="max-width:10vw;border-radius:5px;margin-top:30%">
+            Infos pratiques
+            </div>
+            <div class="container text-center mt-2 text-white" style="max-width:15vw;border-radius:5px;background-color:{{ booking.centre.couleur }}">
+                <div>{{ booking.centre.nom }}</div>
+                <div>{{ booking.centre.adresse }}</div>
+                <div>{{ booking.centre.codePostal }}</div>
+                <div>{{ booking.centre.telephone }}</div>
+                <div>{{ booking.centre.responsable }}</div>
+                <div>{{ booking.centre.mail }}</div>
+                <div>{{ booking.centre.horaire }}</div>
+                <div>{{ booking.centre.horaireApresMidi }}</div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

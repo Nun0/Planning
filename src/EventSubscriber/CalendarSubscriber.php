@@ -76,22 +76,40 @@ class CalendarSubscriber implements EventSubscriberInterface
              * For more information see: https://fullcalendar.io/docs/event-object
              * and: https://github.com/fullcalendar/fullcalendar/blob/master/src/core/options.ts
              */
-
-            $bookingEvent->setOptions([
-            'backgroundColor' => $booking->getFormateur()->getCouleur(),
-            'borderColor' => $booking->getFormateur()->getCouleur(),
-            'title' => ' ' . $booking->getCours() .' - '. $booking->getPromo() .' '. $booking->getTitle() .' - '. $booking->getCentre(),
-            'formateur' => $booking->getFormateur()->getPrenom() . ' ' . $booking->getFormateur()->getNom(),
-            'matin' => $booking->isMatin(),
-            'aprem' => $booking->isAprem(),
-            ]);
             
-            $bookingEvent->addOption(
-                'url',
-                $this->router->generate('app_booking_edit', [
-                    'id' => $booking->getId(),
-                ])
-            );
+            if ($userid == -1) {
+                $bookingEvent->setOptions([
+                'backgroundColor' => $booking->getFormateur()->getCouleur(),
+                'borderColor' => $booking->getFormateur()->getCouleur(),
+                'title' => ' ' . $booking->getCours() .' - '. $booking->getPromo() .' '. $booking->getTitle() .' - '. $booking->getCentre(),
+                'formateur' => $booking->getFormateur()->getPrenom() . ' ' . $booking->getFormateur()->getNom(),
+                'matin' => $booking->isMatin(),
+                'aprem' => $booking->isAprem(),
+                ]);
+                
+                $bookingEvent->addOption(
+                    'url',
+                    $this->router->generate('app_booking_edit', [
+                        'id' => $booking->getId(),
+                    ])
+                );
+            } else{
+                $bookingEvent->setOptions([
+                    'backgroundColor' => $booking->getCentre()->getCouleur(),
+                    'borderColor' => $booking->getCentre()->getCouleur(),
+                    'title' => ' ' . $booking->getCours() .' - '. $booking->getPromo() .' '. $booking->getTitle() .' - '. $booking->getCentre(),
+                    'formateur' => $booking->getFormateur()->getPrenom() . ' ' . $booking->getFormateur()->getNom(),
+                    'matin' => $booking->isMatin(),
+                    'aprem' => $booking->isAprem(),
+                    ]);
+                    
+                    $bookingEvent->addOption(
+                        'url',
+                        $this->router->generate('app_booking_show', [
+                            'id' => $booking->getId(),
+                        ])
+                    );
+            }
 
             // finally, add the event to the CalendarEvent to fill the calendar
             $calendar->addEvent($bookingEvent);
