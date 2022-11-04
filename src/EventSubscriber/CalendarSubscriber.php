@@ -38,7 +38,7 @@ class CalendarSubscriber implements EventSubscriberInterface
         if ($filters != null){
           $userid = $filters['user'];
         }            
-        if (!$userid) {
+        if ($userid == -1) {
         // Modify the query to fit to your entity and needs
         // Change booking.beginAt by your start date property
         $bookings = $this->bookingRepository
