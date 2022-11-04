@@ -20,6 +20,7 @@ class PromoFixtures extends Fixture implements DependentFixtureInterface
         $promo -> setNom('DWWM');
         $promo -> addCour($this->getReference(CoursFixtures::JAVASCRIPT));
         $promo -> addCour($this->getReference(CoursFixtures::HTML));
+        $promo -> addCour($this->getReference(CoursFixtures::CSS));
         $manager->persist($promo);
         $this->addReference(self::DWWM, $promo);
 

@@ -18,14 +18,62 @@ class CentreType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('nom', TextType::class)
-            ->add('adresse', TextType::class)
-            ->add('codePostal', TextType::class)
-            ->add('mail', EmailType::class)
-            ->add('telephone', TextType::class)
-            ->add('responsable', TextType::class)
-            ->add('horaire', TextType::class)
-            ->add('horaireApresMidi', TextType::class)
+            ->add('nom', TextType::class,[
+                'required' => true,
+                'label' => 'Nom:',
+                'attr' => [
+                    'placeholder' => 'nom du centre'
+                ]
+            ])
+            ->add('adresse', TextType::class,[
+                'required' => true,
+                'label' => 'Adresse:',
+                'attr' => [
+                    'placeholder' => 'ex: 12 rue de Paris'
+                ]
+            ])
+            ->add('codePostal', TextType::class,[
+                'required' => true,
+                'label' => 'Code Postal:',
+                'attr' => [
+                    'placeholder' => 'ex: 75000 Paris'
+                ]
+            ])
+            ->add('mail', EmailType::class,[
+                'required' => true,
+                'label' => 'Mail:',
+                'attr' => [
+                    'placeholder' => 'mail@example.com'
+                ]
+            ])
+            ->add('telephone', TextType::class,[
+                'required' => true,
+                'label' => 'Telephone:',
+                'attr' => [
+                    'placeholder' => '00 00 00 00 00'
+                ]
+            ])
+            ->add('responsable', TextType::class,[
+                'required' => true,
+                'label' => 'Responsable:',
+                'attr' => [
+                    'placeholder' => 'ex: Florence Cité'
+                ]
+            ])
+            ->add('horaire', TextType::class,[
+                'required' => true,
+                'label' => 'Horaire (Matin):',
+                'attr' => [
+                    'placeholder' => 'ex: 9:00 - 12:00',
+                ]
+            ])
+            ->add('horaireApresMidi', TextType::class,[
+                'required' => true,
+                'label' => 'Horaire (Après-midi):',
+                'attr' => [
+                    'placeholder' => 'ex: 13:00 - 17:00'
+                ]
+            ])
             ->add('promos', EntityType::class, [
                 'class' => Promo::class,
                 'required' => false,
@@ -37,7 +85,11 @@ class CentreType extends AbstractType
                     'data-placeholder' => 'Promo(s) :',
                 ],
             ])
-            ->add('couleur',ColorType::class)
+            ->add('couleur',ColorType::class,[
+                'required' => true,
+                'label' => 'Couleur:',
+                'help' => 'Eviter la couleur blanc pour meilleur visibilité'
+            ])
         ;
     }
 

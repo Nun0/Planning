@@ -5,11 +5,12 @@
 {% block body %}
 <div style="background-color: #D1D1D1; min-height:100vh">
     <div class="container" style="max-width:50vw">
-    <h1 style="text-align:center" class=" pt-4">Modifier Promo</h1>
-    <a href="{{ path('app_admin_promo_index') }}" class="btn btn-primary mb-3">Retour à la liste</a>
-
-    {{ include('admin_promo/_form.html.twig', {'button_label': 'Modifier'}) }}
-    {{ include('admin_promo/_delete_form.html.twig') }}
+        <h1 style="text-align:center" class=" pt-4">Modifier Promo</h1>
+        <div class="d-flex justify-content-between py-2">
+            <a href="{{ path('app_admin_promo_index') }}" class="btn btn-primary mb-3">Retour à la liste</a>
+            {{ include('admin_promo/_delete_form.html.twig') }}
+        </div>
+        {{ include('admin_promo/_form.html.twig', {'button_label': 'Modifier'}) }}
     </div>
 </div>
 {% endblock %}

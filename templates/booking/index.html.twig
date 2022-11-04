@@ -5,14 +5,18 @@
 {% block body %}
 <div style="background-color: #D1D1D1; min-height:100vh">
     <div class="container">
-    <h1>Liste de missions</h1>
-
+    <h1 style="text-align:center" class="pt-4">Liste de missions</h1>
+    <a href="{{ path('app_booking_new') }}" class="btn btn-success mb-3">Nouvelle Mission</a>
     <table class="table">
         <thead>
             <tr>
                 <th>Date début</th>
                 <th>Date fin</th>
-                <th>Titre</th>
+                <th>Journée</th>
+                <th>Formateur</th>
+                <th>Centre</th>
+                <th>Promo</th>
+                <th>Cours</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -21,21 +25,23 @@
             <tr>
                 <td>{{ booking.beginAt ? booking.beginAt|date('d-m-Y') : '' }}</td>
                 <td>{{ booking.endAt ? booking.endAt|date('d-m-Y') : '' }}</td>
-                <td>{{ booking.title }}</td>
+                <td>{{ booking.matin ? (booking.aprem ? "Matin + Après-midi":"Matin"):"Après-midi"}}</td>
+                <td>{{ booking.formateur }}</td>
+                <td>{{ booking.centre }}</td>
+                <td>{{ booking.promo}} {{ booking.title}}</td>
+                <td>{{ booking.cours}}</td>
                 <td>
-                    <a href="{{ path('app_booking_show', {'id': booking.id}) }}">show</a>
-                    <a href="{{ path('app_booking_edit', {'id': booking.id}) }}">edit</a>
+                    <a href="{{ path('app_booking_show', {'id': booking.id}) }}" class="btn btn-primary">Voir Mission</a>
+                    <a href="{{ path('app_booking_edit', {'id': booking.id}) }}" class="btn btn-primary">Modifier</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="5">no records found</td>
+                <td colspan="8">pas de données...</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
-
-    <a href="{{ path('app_booking_new') }}">Create new</a>
     </div>
 </div>
 {% endblock %}

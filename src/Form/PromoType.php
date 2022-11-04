@@ -7,6 +7,7 @@ use App\Entity\Cours;
 use App\Entity\Promo;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -15,7 +16,13 @@ class PromoType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('nom')
+            ->add('nom', TextType::class,[
+                'required' => true,
+                'attr' => [
+                    'placeholder' => 'ex: DWWM'
+                ],
+                'help' => 'Rappel: le complement de promo seras ajouter au moment de creation de mission.'
+            ])
             ->add('centre', EntityType::class, [
                 'class' => Centre::class,
                 'required' => false,
@@ -24,7 +31,7 @@ class PromoType extends AbstractType
                 'by_reference' => true,
                 'attr' => [
                     'class' => 'select2',
-                    'data-placeholder' => 'Centre(s) :',
+                    'data-placeholder' => 'selectionez le centre... ',
                 ],
             ])
             ->add('cours', EntityType::class, [
@@ -35,7 +42,7 @@ class PromoType extends AbstractType
                 'by_reference' => false,
                 'attr' => [
                     'class' => 'select2',
-                    'data-placeholder' => 'Cours:',
+                    'data-placeholder' => 'selectionez un ou plusieurs cours...',
                 ],
             ])
         ;

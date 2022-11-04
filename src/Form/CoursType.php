@@ -7,6 +7,7 @@ use App\Entity\Promo;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class CoursType extends AbstractType
@@ -14,7 +15,12 @@ class CoursType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('module')
+            ->add('module', TextType::class,[
+                'required' => true,
+                'attr' => [
+                    'placeholder' => 'ex: Javascript'
+                ]
+            ])
             ->add('promo', EntityType::class, [
                 'class' => Promo::class,
                 'required' => false,
@@ -23,7 +29,7 @@ class CoursType extends AbstractType
                 'by_reference' => true,
                 'attr' => [
                     'class' => 'select2',
-                    'data-placeholder' => 'Promo(s) :',
+                    'data-placeholder' => 'selectionez une ou plusieurs promo(s) :',
                 ],
             ])
         ;
