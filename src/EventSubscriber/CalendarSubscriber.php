@@ -33,8 +33,12 @@ class CalendarSubscriber implements EventSubscriberInterface
     {
         $start = $calendar->getStart();
         $end = $calendar->getEnd();
+        $userid=null;
         $filters = $calendar->getFilters();
-
+        if ($filters != null){
+          $userid = $filters['user'];
+        }            
+        if (!$userid) {
         // Modify the query to fit to your entity and needs
         // Change booking.beginAt by your start date property
         $bookings = $this->bookingRepository
@@ -45,6 +49,18 @@ class CalendarSubscriber implements EventSubscriberInterface
             ->getQuery()
             ->getResult()
         ;
+        } else {
+            $bookings = $this->bookingRepository
+            ->createQueryBuilder('booking')
+            ->where('booking.beginAt BETWEEN :start and :end OR booking.endAt BETWEEN :start and :end')
+            ->setParameter('start', $start->format('Y-m-d H:i:s'))
+            ->setParameter('end', $end->format('Y-m-d H:i:s'))
+            ->andWhere('booking.formateur = :userid')
+            ->setParameter('userid', $userid)
+            ->getQuery()
+            ->getResult()
+            ;
+        }
 
         foreach ($bookings as $booking) {
             // this create the events with your data (here booking data) to fill calendar
