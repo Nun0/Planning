@@ -21,7 +21,7 @@ class CentreFixtures extends Fixture implements DependentFixtureInterface
         $centre->setResponsable('Daramony Tek');
         $centre->setHoraire('9H00 – 13H00');
         $centre->setHoraireApresMidi('14H00 – 17H00');
-        $centre->setCouleur('#ffffff');
+        $centre->setCouleur('#616161');
         $centre->addPromo($this->getReference(PromoFixtures::DWWM));
         $manager->persist($centre);
 

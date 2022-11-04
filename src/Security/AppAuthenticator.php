@@ -50,7 +50,7 @@ class AppAuthenticator extends AbstractLoginFormAuthenticator
         // For example:
         // return new RedirectResponse($this->urlGenerator->generate('some_route'));
         if(in_array('ROLE_ADMIN', $token->getUser()->getRoles())) {
-            return new RedirectResponse($this->urlGenerator->generate('app_admin_centre_index'));
+            return new RedirectResponse($this->urlGenerator->generate('app_booking_calendar'));
         } else {
             return new RedirectResponse($this->urlGenerator->generate('app_login'));
         }

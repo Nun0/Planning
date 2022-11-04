@@ -4,15 +4,26 @@
 
 {% block body %}
 <div style="background-color: #D1D1D1; min-height:100vh">
-    <div class="container" style="max-width:30vw">
-        <div class="d-flex justify-content-center pt-4 mb-4">
-            <h1>Nouvelle Mission</h1>
+    <div class="d-flex">
+        <div class="col-md-8 p-0 " id="div1">
+            <div class="container me-0" style="max-width:30vw">
+                <h1 style="text-align:center" class="pt-4">Nouvelle Mission</h1>
+                <a class="btn btn-primary mb-3" href="{{ path('app_booking_calendar') }}">Retour au Planning</a>
+                {{ include('booking/_form.html.twig') }}
+            </div>
         </div>
-        <div class="d-flex justify-content-start pb-3">
-            <a class="btn btn-primary" href="{{ path('app_booking_calendar') }}">Retour au Planning</a>
+        <div class="col-md-4 p-0" id="div2">
+            <div class="container bg-white text-center text-danger" style="max-width:10vw;border-radius:5px;margin-top:30%">
+            Mes astuces
+            </div>
+            <div class="container bg-white text-center mt-4" style="max-width:15vw;border-radius:5px;">
+            Je rempli dans l'ordre haut vers le bas pour eviter des erreurs
+            </div>
+            <div class="container bg-white text-center mt-3" style="max-width:15vw;border-radius:5px;">
+            Pour changer Cours ou Promo je change le Centre d'abbord pour que le filtre soit bien apliqué 
+            </div>
         </div>
-        {{ include('booking/_form.html.twig') }}
-    </div>
+    </div >
 </div>
 {% endblock %}
 {% block javascripts %}
