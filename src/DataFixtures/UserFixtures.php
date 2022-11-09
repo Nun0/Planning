@@ -56,13 +56,57 @@ class UserFixtures extends Fixture implements FixtureGroupInterface
 
         $user = new User();
         $user->setNom("Admin");
-        $user->setPrenom("titi");
+        $user->setPrenom("Example");
         $user->setTelephone("010101");
         $user->setEmail("admin@gmail.com");
         $user->setCouleur("#ffaa22");
         $user->setRoles(["ROLE_USER", "ROLE_ADMIN"]);
         $user->setPlainPassword('password');
         $user->setPassword($this->encoder->hashPassword($user, 'password'));
+        $manager->persist($user);
+
+        $user = new User();
+        $user->setNom("Stempert");
+        $user->setPrenom("Pauline");
+        $user->setTelephone("010101");
+        $user->setEmail("pauline.stempert@groupe-sr3.com");
+        $user->setCouleur("#ff24d7");
+        $user->setRoles(["ROLE_USER", "ROLE_ADMIN"]);
+        $user->setPlainPassword('password');
+        $user->setPassword($this->encoder->hashPassword($user, 'password'));
+        $manager->persist($user);
+
+        $user = new User();
+        $user->setNom("Vanbavinckhove");
+        $user->setPrenom("Remy");
+        $user->setTelephone("010101");
+        $user->setEmail("remy.vanbavinckhove@groupe-sr3.com");
+        $user->setCouleur("#3d4aff");
+        $user->setRoles(["ROLE_USER", "ROLE_ADMIN"]);
+        $user->setPlainPassword('Sr3001');
+        $user->setPassword($this->encoder->hashPassword($user, 'Sr3001'));
+        $manager->persist($user);
+        
+        $user = new User();
+        $user->setNom("Borka");
+        $user->setPrenom("Marlene");
+        $user->setTelephone("010101");
+        $user->setEmail("marlene.borka@groupe-sr3.com");
+        $user->setCouleur("#fff71a");
+        $user->setRoles(["ROLE_USER", "ROLE_ADMIN"]);
+        $user->setPlainPassword('Sr3002');
+        $user->setPassword($this->encoder->hashPassword($user, 'Sr3002'));
+        $manager->persist($user);
+
+        $user = new User();
+        $user->setNom("Singh");
+        $user->setPrenom("Mathias");
+        $user->setTelephone("010101");
+        $user->setEmail("mathias.singh@groupe-sr3.com");
+        $user->setCouleur("#ff0000");
+        $user->setRoles(["ROLE_USER", "ROLE_ADMIN"]);
+        $user->setPlainPassword('Sr3003');
+        $user->setPassword($this->encoder->hashPassword($user, 'Sr3003'));
         $manager->persist($user);
 
         $manager->flush();

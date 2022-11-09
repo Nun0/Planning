@@ -29,13 +29,13 @@ class BookingType extends AbstractType
                 'constraints' => [
                     new NotBlank(['message' => 'Ce champs ne peut pas être vide'])
                 ],
-                'label' => 'Date début: ',
+                'label' => 'Date de début: ',
                 'widget' => 'single_text',
                 'input' => 'datetime_immutable',
                 ])
 
             ->add('endAt', DateType::class, [
-                'label' => 'Date fin: ',
+                'label' => 'Date de fin: ',
                 'widget' => 'single_text',
                 'input' => 'datetime_immutable',
                 ])
@@ -64,7 +64,7 @@ class BookingType extends AbstractType
                 'query_builder' => function(UserRepository $ur){
                     return $ur->createQueryBuilder('u')->orderBy('u.prenom', 'ASC');
                 },
-                'label' => 'Formateur: ',
+                'label' => false,
                 'placeholder' => 'sélectionnez le formateur... ',
                 'multiple' => false,
                 'by_reference' => true,
@@ -73,7 +73,7 @@ class BookingType extends AbstractType
             ->add('centre', EntityType::class, [
                 'class' => Centre::class,
                 'required' => false,
-                'label' => 'Centre: ',
+                'label' => false,
                 'placeholder' => 'sélectionnez le centre... ',
                 'query_builder' => function(CentreRepository $cr){
                     return $cr->createQueryBuilder('c')->orderBy('c.nom', 'ASC');
@@ -81,7 +81,7 @@ class BookingType extends AbstractType
             ])
                 
             ->add('promo', EntityType::class, [
-                "label" => "Promo: ",
+                'label' => false,
                 "class" => Promo::class,
                 'placeholder' => 'sélectionnez la promo... ',
                 "choice_label" => function($promo){
@@ -90,7 +90,7 @@ class BookingType extends AbstractType
             ])
                 
             ->add('title', TextType::class, [
-                "label" => " Promo (texte libre): ",
+                'label' => false,
                 'help' => 'complement pour la promo, choisiz la promo avant ',
                 'attr' => [
                     'placeholder' => 'specification de la promo...',
@@ -102,7 +102,7 @@ class BookingType extends AbstractType
             ])
             
             ->add('cours', EntityType::class, [
-                "label" => "Cours: ",
+                'label' => false,
                 "class" => Cours::class,
                 'placeholder' => 'sélectionnez le cours... ',
                 "choice_label" => function($cours){

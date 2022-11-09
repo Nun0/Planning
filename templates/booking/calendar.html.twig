@@ -10,10 +10,10 @@
 				<div class="text-center">
 					<a href="{{ path('app_booking_new') }}" class="btn btn-primary m-5">Nouvelle Mission</a>
 				</div>
-				<h5 class="text-center">Formateurs:</h5>
+				<h5 class="text-center font-weight-bold">Formateurs</h5>
 				<div class="d-flex flex-column">
 					{% for user in users %}
-						<a class="text-center button m-1 text-white btn" style="background-color: {{ user.couleur }}; border-radius:5px;">{{ user.prenom }}
+						<a class="text-center button m-1 btn" style="background-color: {{ user.couleur }}; border-radius:5px;">{{ user.prenom }}
 							{{ user.nom }}</a>
 					{% endfor %}
 				</div>
@@ -43,6 +43,7 @@
                 themeSystem: 'bootstrap5',
                 timeZone: 'Europe/Paris',
                 displayEventTime: false,
+                
                 editable: false, 
                 {# eventResizableFromStart: true #}
                 eventDisplay: 'block',

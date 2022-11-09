@@ -78,13 +78,16 @@ class CalendarSubscriber implements EventSubscriberInterface
              */
             
             if ($userid == -1) {
+                $journee = ($booking->isMatin()?($booking->isAprem()? 'Matin + Après-Midi': 'Matin') : 'Après-Midi');
+
                 $bookingEvent->setOptions([
                 'backgroundColor' => $booking->getFormateur()->getCouleur(),
                 'borderColor' => $booking->getFormateur()->getCouleur(),
-                'title' => ' ' . $booking->getCours() .' - '. $booking->getPromo() .' '. $booking->getTitle() .' - '. $booking->getCentre(),
+                'title' => ' ' . $booking->getCours() .' - '. $booking->getPromo() .' '. $booking->getTitle() .' - '. $booking->getCentre() .' - '. $journee,
                 'formateur' => $booking->getFormateur()->getPrenom() . ' ' . $booking->getFormateur()->getNom(),
                 'matin' => $booking->isMatin(),
                 'aprem' => $booking->isAprem(),
+                'textColor' => '#000000'
                 ]);
                 
                 $bookingEvent->addOption(
@@ -94,10 +97,12 @@ class CalendarSubscriber implements EventSubscriberInterface
                     ])
                 );
             } else{
+                $journee = ($booking->isMatin()?($booking->isAprem()? 'Matin + Après-Midi': 'Matin') : 'Après-Midi');
+
                 $bookingEvent->setOptions([
                     'backgroundColor' => $booking->getCentre()->getCouleur(),
                     'borderColor' => $booking->getCentre()->getCouleur(),
-                    'title' => ' ' . $booking->getCours() .' - '. $booking->getPromo() .' '. $booking->getTitle() .' - '. $booking->getCentre(),
+                    'title' => ' ' . $booking->getCours() .' - '. $booking->getPromo() .' '. $booking->getTitle() .' - '. $booking->getCentre() .' - '. $journee,
                     'formateur' => $booking->getFormateur()->getPrenom() . ' ' . $booking->getFormateur()->getNom(),
                     'matin' => $booking->isMatin(),
                     'aprem' => $booking->isAprem(),
