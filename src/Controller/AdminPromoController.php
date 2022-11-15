@@ -53,7 +53,6 @@ class AdminPromoController extends AbstractController
                 $coursPromo[$key]['id'] = $value->getId();
                 $coursPromo[$key]['module'] = $value->getModule();
             }
-
             return new JsonResponse($coursPromo);
         }
         
