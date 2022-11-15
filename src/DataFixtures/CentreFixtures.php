@@ -74,6 +74,18 @@ class CentreFixtures extends Fixture implements DependentFixtureInterface
         $centre->setCouleur('#ff6622');
         $manager->persist($centre);
 
+        $centre = new Centre();
+        $centre->setNom('Nom du centr');
+        $centre->setAdresse('100 Rue de Paris');
+        $centre->setCodePostal('75012 PARIS');
+        $centre->setMail('paslevrai@mail.com');
+        $centre->setTelephone('01 02 03 04 05');
+        $centre->setResponsable('Nom Responsable');
+        $centre->setHoraire('9H00 – 12H00');
+        $centre->setHoraireApresMidi('13H00 – 17H00');
+        $centre->setCouleur('#ffaa22');
+        $manager->persist($centre);
+
         $manager->flush();
     }
 

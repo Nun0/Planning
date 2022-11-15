@@ -2,16 +2,18 @@
 
 {% block body %}
 	<div class="container-fluid">
-		<div class="d-flex">
-			<div class="col-md-10 p-0 m-1" id="div1">
+		<div class="d-flex flex-wrap">
+			<div class="col-md-10 p-0 m-0" id="div1">
 				<div id="calendar-holder"></div>
 			</div>
 			<div class="col-md-2 m-0" id="div2">
+                <h2 class="text-center mt-5">{{ user.prenom }} {{ user.nom }}</h2>
 				<h5 class="text-center mt-5">Centres:</h5>
 				<div class="d-flex flex-column">
 					{% for centre in centres %}
-						<a class="text-center button m-1 text-white btn" style="background-color: {{ centre.couleur }}; border-radius:5px;">
-							{{ centre.nom }}</a>
+						<a class="text-center m-1 text-white btn" style="background-color: {{ centre.couleur }}; border-radius:5px;">
+							{{ centre.nom }}
+                        </a>
 					{% endfor %}
 				</div>
 			</div>

@@ -21,10 +21,10 @@
         {% endblock %}
     </head>
     <body>
-        <nav class="navbar navbar-light">
+        <nav class="navbar navbar-light" role="navigation">
             <div class="container-fluid mx-4">
                 <a class="navbar-brand" href="{{path('app_booking_calendar')}}"><img src={{asset('images/logo.png')}} alt="logo" style="width:100px"></a>
-                <div class="d-flex flex-row align-items-center" id="nav">
+                <div class="d-flex flex-wrap align-items-center">
                     <div><a style="font-size:24px" class="nav-item nav-link text-danger" href="{{path('app_booking_calendar')}}">Planning</a></div>
                     <div><a style="font-size:24px" class="nav-item nav-link ms-5" href="{{path('app_admin_user_index')}}">Formateurs</a></div>
                     <div><a style="font-size:24px" class="nav-item nav-link ms-5" href="{{path('app_admin_centre_index')}}">Centres de Formation</a></div>
@@ -32,7 +32,6 @@
                     <div><a style="font-size:24px" class="nav-item nav-link ms-5" href="{{path('app_admin_cours_index')}}">Cours</a></div>
                     <div><a class="btn btn-danger ms-5" href={{path('app_logout')}} >Déconnexion</a></div>
                 </div>
-                
             </div>
         </nav>
 
