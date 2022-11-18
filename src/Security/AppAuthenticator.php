@@ -26,11 +26,14 @@ class AppAuthenticator extends AbstractLoginFormAuthenticator
     {
         $this->urlGenerator = $urlGenerator;
     }
-
+    // HACK !!! A ENLEVER DES qu'on a le bon htaccess 
+    public function supports(Request $request): bool
+    {
+        return $request->isMethod('POST') ;
+    }
     public function authenticate(Request $request): Passport
     {
         $email = $request->request->get('email', '');
-
         $request->getSession()->set(Security::LAST_USERNAME, $email);
 
         return new Passport(
