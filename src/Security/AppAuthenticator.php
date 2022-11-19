@@ -26,11 +26,11 @@ class AppAuthenticator extends AbstractLoginFormAuthenticator
     {
         $this->urlGenerator = $urlGenerator;
     }
-    // HACK !!! A ENLEVER DES qu'on a le bon htaccess 
+    /* HACK  - mais ca fait tout foirer... 
     public function supports(Request $request): bool
     {
         return $request->isMethod('POST') ;
-    }
+    }*/
     public function authenticate(Request $request): Passport
     {
         $email = $request->request->get('email', '');
@@ -64,6 +64,10 @@ class AppAuthenticator extends AbstractLoginFormAuthenticator
 
     protected function getLoginUrl(Request $request): string
     {
+        /* Autre Hack, qui marche */
+        return "/";
+        /*
         return $this->urlGenerator->generate(self::LOGIN_ROUTE);
+        */
     }
 }

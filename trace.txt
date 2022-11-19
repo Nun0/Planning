@@ -1,0 +1,30 @@
+ at C:\xampp8\htdocs\Planning\src\Security\AppAuthenticator.php:33
+  at App\Security\AppAuthenticator->authenticate(object(Request))
+     (C:\xampp8\htdocs\Planning\vendor\symfony\security-http\Authenticator\Debug\TraceableAuthenticator.php:63)
+  at Symfony\Component\Security\Http\Authenticator\Debug\TraceableAuthenticator->authenticate(object(Request))
+     (C:\xampp8\htdocs\Planning\vendor\symfony\security-http\Authentication\AuthenticatorManager.php:180)
+  at Symfony\Component\Security\Http\Authentication\AuthenticatorManager->executeAuthenticator(object(TraceableAuthenticator), object(Request))
+     (C:\xampp8\htdocs\Planning\vendor\symfony\security-http\Authentication\AuthenticatorManager.php:161)
+  at Symfony\Component\Security\Http\Authentication\AuthenticatorManager->executeAuthenticators(array(object(TraceableAuthenticator)), object(Request))
+     (C:\xampp8\htdocs\Planning\vendor\symfony\security-http\Authentication\AuthenticatorManager.php:141)
+  at Symfony\Component\Security\Http\Authentication\AuthenticatorManager->authenticateRequest(object(Request))
+     (C:\xampp8\htdocs\Planning\vendor\symfony\security-http\Firewall\AuthenticatorManagerListener.php:40)
+  at Symfony\Component\Security\Http\Firewall\AuthenticatorManagerListener->authenticate(object(RequestEvent))
+     (C:\xampp8\htdocs\Planning\vendor\symfony\security-http\Authenticator\Debug\TraceableAuthenticatorManagerListener.php:65)
+  at Symfony\Component\Security\Http\Authenticator\Debug\TraceableAuthenticatorManagerListener->authenticate(object(RequestEvent))
+     (C:\xampp8\htdocs\Planning\vendor\symfony\security-bundle\Debug\WrappedLazyListener.php:49)
+  at Symfony\Bundle\SecurityBundle\Debug\WrappedLazyListener->authenticate(object(RequestEvent))
+     (C:\xampp8\htdocs\Planning\vendor\symfony\security-http\Firewall\AbstractListener.php:26)
+  at Symfony\Component\Security\Http\Firewall\AbstractListener->__invoke(object(RequestEvent))
+     (C:\xampp8\htdocs\Planning\vendor\symfony\security-bundle\Security\LazyFirewallContext.php:60)
+  at Symfony\Bundle\SecurityBundle\Security\LazyFirewallContext->__invoke(object(RequestEvent))
+     (C:\xampp8\htdocs\Planning\vendor\symfony\security-bundle\Debug\TraceableFirewallListener.php:70)
+  at Symfony\Bundle\SecurityBundle\Debug\TraceableFirewallListener->callListeners(object(RequestEvent), object(Generator))
+     (C:\xampp8\htdocs\Planning\vendor\symfony\security-http\Firewall.php:92)
+  at Symfony\Component\Security\Http\Firewall->onKernelRequest(object(RequestEvent), 'kernel.request', object(TraceableEventDispatcher))
+
+
+
+  [2022-11-18T17:39:56.667538+00:00] security.DEBUG: Checking support on authenticator. {"firewall_name":"main","authenticator":"App\\Security\\AppAuthenticator"} []
+[2022-11-18T17:39:56.668854+00:00] security.DEBUG: Authenticator does not support the request. {"firewall_name":"main","authenticator":"App\\Security\\AppAuthenticator"} []
+[
