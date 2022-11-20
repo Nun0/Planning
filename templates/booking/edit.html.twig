@@ -20,7 +20,7 @@
             Mes astuces
             </div>
             <div class="container bg-white text-center mt-4" style="max-width:15vw;border-radius:5px;">
-            Je remplis du haut vers le bas pour eviter des erreurs
+            Je remplis du haut vers le bas pour éviter des erreurs
             </div>
             <div class="container bg-white text-center mt-3" style="max-width:15vw;border-radius:5px;">
             Pour changer "Cours" ou "Promo" je change le "Centre" en premier pour que le filtre soit bien appliqué 
@@ -45,14 +45,14 @@
                         $("#booking_promo").html('');
                         if(promos.length > 0){
                             $("#booking_promo").
-                            append("<option value selected='selected'>sélectionnez la promo...</option>");
+                            append("<option value selected='selected'>Sélectionnez la promo...</option>");
                             for(promo in promos){
                                 $("#booking_promo").
                                 append("<option value="+ promos[promo].id +">"+ promos[promo].nom +"</option>");
                             }   
                         } else {
                             $("#booking_promo").
-                                append("<option>pas de résultats trouvés</option>");
+                                append("<option>Pas de résultats trouvés</option>");
                         }
                     }
                 });
@@ -74,14 +74,14 @@
 
                         if(cours.length > 0){
                             $("#booking_cours").
-                            append("<option value selected='selected'>sélectionnez le cours...</option>");
+                            append("<option value selected='selected'>Sélectionnez le cours...</option>");
                             for(cour in cours){
                                 $("#booking_cours").
                                 append("<option value="+ cours[cour].id +">"+ cours[cour].module +"</option>");
                             }
                         } else {
                             $("#booking_cours").
-                            append("<option>pas de résultats trouvés</option>");
+                            append("<option>Pas de résultats trouvés</option>");
                         }
                     }
                 });
